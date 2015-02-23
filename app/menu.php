@@ -1,11 +1,11 @@
 <head>
-	<meta charset="utf-8" />
+	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="/root/libs/css/bootstrap.css">
 	<link rel="stylesheet" href="/root/libs/css/bootstrap-theme.css">
+	<script src="/root/libs/js/jquery-1.11.2.min.js"></script>
+	<script src="/root/libs/js/bootstrap.js"></script>
 </head>
 <body>
-	<script src="/root/libs/js/bootstrap.js"></script>
-	<script src="/root/libs/js/jquery-1.11.2.min.js"></script>
 	<nav id="myNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="container">
