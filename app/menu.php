@@ -22,19 +22,50 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Menu<b class="caret"></b></a>
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Crear nuevo<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="/pedido/historialPedidos.php">Historial Documentos</a>
+								<a role="menuitem" tabindex="-1" href="#">Servicio</a>
 							</li>
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="/facturas/listaFacturasOtraForma.php">Listado de facturas</a>
+								<a role="menuitem" tabindex="-1" href="#">Centro</a>
 							</li>
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="/usuario/editarUsuario.php">Modificar datos</a>
+								<a role="menuitem" tabindex="-1" href="#">Material</a>
 							</li>
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="/cerrarSesion.php">Cerrar sesi&oacute;n</a>
+								<a role="menuitem" tabindex="-1" href="#">Radi&oacute;logo</a>
+							</li>
+							<li role="presentation">
+								<a role="menuitem" tabindex="-1" href="#">Factor de Riesgo</a>
+							</li>
+							<li role="presentation">
+								<a role="menuitem" tabindex="-1" href="#">Patolog&iacute;a</a>
+							</li>
+							<li role="presentation">
+								<a role="menuitem" tabindex="-1" href="#">Tipo de Procedimiento</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Estad&iacute;sticas<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li role="presentation">
+								<a role="menuitem" tabindex="-1" href="#">Generales</a>
+							</li>
+							<li role="presentation">
+								<a role="menuitem" tabindex="-1" href="#">Patolog&iacute;as</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Base de Datos<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li role="presentation">
+								<a role="menuitem" tabindex="-1" href="#">Importar</a>
+							</li>
+							<li role="presentation">
+								<a role="menuitem" tabindex="-1" href="#">Exportar</a>
 							</li>
 						</ul>
 					</li>
