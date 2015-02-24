@@ -1,5 +1,5 @@
 <?php
-	include"/services/connection.php";
+	include"connection.php";
 	
 	function get_all_paciente(){
 		$con = connect();

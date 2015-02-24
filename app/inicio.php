@@ -1,6 +1,6 @@
 <?php
 	include"menu.php";
-	include"/root/services/servicioService.php";
+	include"../services/servicioService.php";
 	$nombre = $_POST["nombrepaciente"];
 	$nhistorial = $_POST["nhistorial"];
 	
