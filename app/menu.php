@@ -1,3 +1,21 @@
+<?php
+	include"../services/servicioService.php";
+	include"../services/centroService.php";
+	include"../services/materialService.php";
+	include"../services/radiologoService.php";
+	include"../services/factorService.php";
+	include"../services/patologiaService.php";
+	include"../services/tipoprocedimientoService.php";
+	include"../services/complicacionService.php";
+	include"../services/diagnosticoService.php";
+	include"../services/episodioService.php";
+	include"../services/estadisticasService.php";
+	include"../services/evolucionService.php";
+	include"../services/pacienteService.php";
+	include"../services/procedimientoService.php";
+	include"../services/pruebaDiagnosticaService.php";
+	include"../services/relacionesService.php";
+?>
 <head>
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="/root/libs/css/bootstrap.css">
@@ -16,37 +34,12 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Inicio</a>
+				<a class="navbar-brand" href="inicio.php">Inicio</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Crear nuevo<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Servicio</a>
-							</li>
-							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Centro</a>
-							</li>
-							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Material</a>
-							</li>
-							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Radi&oacute;logo</a>
-							</li>
-							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Factor de Riesgo</a>
-							</li>
-							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Patolog&iacute;a</a>
-							</li>
-							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Tipo de Procedimiento</a>
-							</li>
-						</ul>
-					</li>
+					<li><a href="crear.php">Crear</a></li>
 					<li class="dropdown">
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Estad&iacute;sticas<b class="caret"></b></a>
 						<ul class="dropdown-menu">

@@ -1,12 +1,6 @@
 <?php
 	include"menu.php";
-	include"../services/servicioService.php";
-	include"../services/centroService.php";
-	include"../services/materialService.php";
-	include"../services/radiologoService.php";
-	include"../services/factorService.php";
-	include"../services/patologiaService.php";
-	include"../services/tipoprocedimientoService.php";
+	
 	$mensaje = "";
 
 	if (isset($_POST["crear"])) {

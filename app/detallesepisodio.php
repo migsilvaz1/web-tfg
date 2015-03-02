@@ -1,15 +1,14 @@
 <?php
 	include"menu.php";
-	include"../services/servicioService.php";
-	include"../services/patologiaService.php";
-	include"../services/procedimientoService.php";
-	include"../services/centroService.php";
-
-	
-	$services = get_all_servicio();
-	$patologias = get_all_patologia();
-	$procedimientos = get_all_procedimiento();
-	$centros = get_all_centro();
+	if(!isset($_GET['idepisodio'])){
+		header("Location: error.php");
+	}else{
+		
+		$pacietnes = get_all_paciente();
+		$services = get_all_servicio();
+		$patologias = get_all_patologia();
+		$procedimientos = get_all_procedimiento();
+		$centros = get_all_centro();
 
 ?>
 <head>
@@ -39,7 +38,7 @@
 					<select id="patologia">
 						<?php
 							foreach ($patologias as $value) {
-								echo "<option value=\"".$value["id_servicio"]."\">".$value[nombre]."</option>";
+								echo "<option value=\"".$value["id_patologia"]."\">".$value[nombre]."</option>";
 							}
 						?>
 
@@ -94,3 +93,6 @@
 		</div>
 	</div>
 </body>
+<?php
+	}
+?>
