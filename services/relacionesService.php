@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function create_procedimiento_material($id_procedimiento, $id_material){
 		$con = connect();

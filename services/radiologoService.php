@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_radiologo(){
 		$con = connect();
@@ -35,7 +35,9 @@
 		$stmt = $con->prepare('INSERT INTO radiologos VALUES(NULL,:nombre)');
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_radiologo($id, $nombre){
 		$con = connect();

@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_paciente(){
 		$con = connect();
@@ -51,7 +51,9 @@
 		$stmt->bindParam(':edad', $edad);
 		$stmt->bindParam(':edadConsulta', $edadConsulta);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_paciente($id, $numeroHistorial, $nombre, $fechaNacimiento, $sexo, $enfermedadesConocidas, $edad, $edadConsulta){
 		$con = connect();

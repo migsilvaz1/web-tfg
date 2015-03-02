@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function porcentaje_complicaciones_patologia($id_patologia){
 		$con = connect();

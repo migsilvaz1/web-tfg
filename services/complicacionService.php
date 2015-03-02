@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_complicacion(){
 		$con = connect();
@@ -37,7 +37,9 @@
 		$stmt->bindParam(':mtemprana', $mtemprana);
 		$stmt->bindParam(':mtardia', $mtardia);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_complicacion($id, $nombre, $mtemprana, $mtardia){
 		$con = connect();

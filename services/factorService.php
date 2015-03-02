@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_factor(){
 		$con = connect();
@@ -35,7 +35,9 @@
 		$stmt = $con->prepare('INSERT INTO factoresderiesgo VALUES(NULL,:nombre)');
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_factor($id, $nombre){
 		$con = connect();

@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_pdiagnostica(){
 		$con = connect();
@@ -36,7 +36,9 @@
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->bindParam(':idRadiologo', $idRadiologo);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_pdiagnostica($id, $nombre){
 		$con = connect();

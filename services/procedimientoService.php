@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_procedimiento(){
 		$con = connect();
@@ -26,7 +26,9 @@
 		$stmt->bindParam(':idTipop', $idTipop);
 		$stmt->bindParam(':idEvolucion', $idEvolucion);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_procedimiento($id, $idTipop, $idEvolucion){
 		$con = connect();

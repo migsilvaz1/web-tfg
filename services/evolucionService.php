@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_evolucion(){
 		$con = connect();
@@ -26,7 +26,9 @@
 		$stmt->bindParam(':resultado', $resultado);
 		$stmt->bindParam(':notas', $notas);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_evolucion($id, $resultado, $notas){
 		$con = connect();

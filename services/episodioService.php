@@ -1,5 +1,5 @@
 <?php
-	include"connection.php";
+	include_once"connection.php";
 	
 	function get_all_episodio(){
 		$con = connect();
@@ -40,7 +40,9 @@
 		$stmt->bindParam(':idCentro', $idCentro);
 		$stmt->bindParam(':idPatologia', $idPatologia);
 		$stmt->execute();
+		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
+		return $lastInsertId;
 	}
 	function update_episodio($id, $nombre, $fecha, $idPaciente, $idServicio, $idCentro, $idPatologia){
 		$con = connect();
