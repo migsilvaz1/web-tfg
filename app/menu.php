@@ -47,7 +47,7 @@
 								<a role="menuitem" tabindex="-1" href="#">Generales</a>
 							</li>
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Patolog&iacute;as</a>
+								<a role="menuitem" tabindex="-1" href="estadisticaspatologia.php">Patolog&iacute;as</a>
 							</li>
 						</ul>
 					</li>
@@ -55,10 +55,10 @@
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Base de Datos<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Importar</a>
+								<a role="menuitem" tabindex="-1" href="">Importar</a>
 							</li>
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Exportar</a>
+								<a role="menuitem" tabindex="-1" href="export_db.php">Exportar</a>
 							</li>
 						</ul>
 					</li>
