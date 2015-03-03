@@ -28,7 +28,7 @@
 				create_radiologo($nombre);
 				$mensaje = "<div class=\"alert alert-success\" role=\"alert\"><label><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>&nbsp;Radiologo guardado correctamente</label></div>";
 				break;
-			case 'Factor':
+			case 'Factorderiesgo':
 				create_factor($nombre);
 				$mensaje = "<div class=\"alert alert-success\" role=\"alert\"><label><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>&nbsp;Factor de riesgo guardado correctamente</label></div>";
 				break;
