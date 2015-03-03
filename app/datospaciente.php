@@ -7,8 +7,10 @@
 		$id = $_GET['idpaciente'];
 		$paciente = get_by_id_paciente($_GET['idpaciente']);
 		$episodios = get_all_episodio_from_paciente($id);
+		$factores_paciente = get_all_factor_from_paciente($id);
+		$factores_posibles = get_all_factor();
 		
-		if(!empty($_REQUEST['nhistorial'])){
+		if(isset($_POST['paciente-submit'])){
 			$num_historial = $_REQUEST['nhistorial'];
 			$nombre = $_REQUEST['nombrepaciente'];
 			$fecha_nac = $_REQUEST['fechanacimiento'];
@@ -16,6 +18,18 @@
 			$enfermedades = $_REQUEST['enfermedadesconocidas'];
 			update_paciente($id, $num_historial, $nombre, $fecha_nac, $sexo, $enfermedades, null, null);
 			header("Location: datospaciente.php?idpaciente=$id");
+		}
+		if (isset($_POST['factores-submit'])){
+			foreach ($factores_paciente as $elem) {
+				delete_paciente_factor($id, $elem['id_factor']);
+			}
+			foreach ($_POST as $elemento) {
+				if(!empty($elemento)){
+					create_paciente_factor($id, $elemento);
+				}
+			}
+			$string = "datospaciente.php?idpaciente=$id";
+			header("Location:$string");
 		}
 ?>
 <head>
@@ -36,6 +50,10 @@
 					}
 					?>
 			</ul>
+			<?php foreach ($_POST as $elemento) {
+					print_r($elemento);
+			}
+			?>
 		</div>
 		<!-- Fin Barra -->
 		<div class="col-md-1"></div>
@@ -84,29 +102,31 @@
 							<textarea id="enfermedadesconocidas" class="form-control" name="enfermedadesconocidas"><?php echo $paciente['enfermedadesConocidas']; ?></textarea>
 						</div>
 					</div>
-					<div id="botonesdp" class="pull-right">
-						<input type="submit" class="btn btn-default" value="Guardar">
+					<div id="botonesdp">
+						<input type="submit" class="btn btn-default" name="paciente-submit" value="Guardar">
 					</div>
 				</div>
 			</form>
 			<div id="grupo2">
 				<h3 id="titulo2">Factores de riesgo</h3>
 					<ul>
-						<li>
-							Prueba
-						</li>
+						<?php
+							foreach ($factores_paciente as $factor) {
+								$nombre_factor = $factor['nombre'];
+								echo "<li>$nombre_factor</li>";
+							}
+						?>
 					</ul>
 					<div id="botonesfc">
-						<input type="submit" value="Elimiar">
-						<input type="submit" value="Anadir">
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modFactores">
+							Modificar
+						</button>
 					</div>
 				</div>
-			</form>
-			<form action="datospaciente.php" method="post">
 				<div id="grupo3">
-					<div id="titulo3">
+					<h3 id="titulo3">
 						Episodios
-					</div>
+					</h3>
 					<ul>
 						<?php
 							foreach ($episodios as $episodio) {
@@ -118,8 +138,60 @@
 					</ul>
 				</div>
 
-			</form>
-		</div>
+			<!-- Modal -->
+			<div class="modal fade" id="modFactores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Seleccione los factores para el paciente</h4>
+						</div>
+						<div class="modal-body">
+							<form action="<?php echo"datospaciente.php?idpaciente=$id" ?>" method="post" class="form-horizontal">
+								<?php
+									$cont = 0;
+									foreach ($factores_posibles as $fact){
+										$fact_name = $fact['nombre'];
+										$fact_id = $fact['id_factor'];
+										$checked = false;
+										foreach ($factores_paciente as $factp) {
+											if((int)$fact['id_factor'] == (int)$factp['id_factor']){
+												$checked = true;
+												break;
+											}
+										}
+										?>
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<div class="checkbox">
+													<input type="checkbox" id="<?php echo $fact_name ?>" 
+													name="<?php echo $cont ?>" 
+													value="<?php echo $fact_id ?>" 
+													<?php if($checked){echo "checked";}?>>
+													<label for="<?php echo $fact_name ?>"><?php echo $fact_name ?></label>
+												</div>
+											</div>
+										</div>
+										<?php
+										$cont++;
+									}
+								?>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Cancelar
+							</button>
+							<button type="submit" name="factores-submit" class="btn btn-primary">
+								Guardar
+							</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
 	</div>
 </body>
 <?php }
