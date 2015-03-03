@@ -5,23 +5,23 @@
 	$patologias = get_all_patologia();
 	$procedimientos = get_all_tipo_procedimiento();
 	$pacietnes = get_all_paciente();
-	$error = false;
+	$error = "";
 	
 	if(isset($_REQUEST['nhistorial'])){
 		if(empty($_REQUEST['nhistorial'])){
-			$error = true;
+			$error = "true";
 		}
 		if(empty($_REQUEST['nombrepaciente'])){
-			$error = true;
+			$error = "true";
 		}
 		if(empty($_REQUEST['fechanacimiento'])){
-			$error = true;
+			$error = "true";
 		}
 		if(empty($_REQUEST['nombreepisodio'])){
-			$error = true;
+			$error = "true";
 		}
 		if(empty($_REQUEST['fechaepisodio'])){
-			$error = true;
+			$error = "true";
 		}
 	}
 	
@@ -54,6 +54,7 @@
 			$id_procedimiento = create_procedimiento($id_tipop, null);
 			create_episodio_procedimiento($id_episodio, $id_procedimiento);
 		}
+		$error="false";
 	}
 
 ?>
@@ -79,8 +80,8 @@
 		<!-- Fin Barra -->
 		<div class="col-md-1"></div>
 		<div id="formulario" class="jumbotron col-md-7">
-			<div id="error"><?php if($error){ echo "<div id=\"divError\" class=\"alert alert-danger\" role=\"alert\"><label id=\"error1\"><span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>&nbsp;Informaci&oacute;n no guardada por errores en el formulario</label></div>";}
-				else{echo "<div id=\"divsuccess\" class=\"alert alert-success\" role=\"alert\"><label id=\"success\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>&nbsp;Informaci&oacute;n guardada</label></div>";} ?></div>
+			<div id="error"><?php if($error=="true"){ echo "<div id=\"divError\" class=\"alert alert-danger\" role=\"alert\"><label id=\"error1\"><span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>&nbsp;Informaci&oacute;n no guardada por errores en el formulario</label></div>";}
+				if($error=="false"){echo "<div id=\"divsuccess\" class=\"alert alert-success\" role=\"alert\"><label id=\"success\"><span class=\"glyphicon glyphicon-ok\" aria-hidden=\"true\"></span>&nbsp;Informaci&oacute;n guardada</label></div>";} ?></div>
 			<form action="inicio.php" method="post" class="form-horizontal">
 				<div id="grupo1">
 					<h3 id="titulo1">
