@@ -132,7 +132,7 @@
 							foreach ($episodios as $episodio) {
 								$idepisodio = $episodio['id_episodio'];
 								$nepisodio = $episodio['nombre'];
-								echo "<li><a href=\"detallesepisodio.php?idepisodio=$idepisodio\">$nepisodio</a></li>";
+								echo "<li><a href=\"datosepisodio.php?idepisodio=$idepisodio\">$nepisodio</a></li>";
 							}
 						?>
 					</ul>
