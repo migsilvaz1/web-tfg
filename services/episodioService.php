@@ -85,4 +85,13 @@
 		return $res;
 		disconnect($con);
 	}
+	function get_all_diagnostico_from_episodio($id){
+		$con = connect();
+		$stmt = $con->prepare('SELECT * FROM diagnosticos WHERE id_episodio = :id');
+		$stmt->bindParam(':id', $id);
+		$stmt->execute();
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $res;
+		disconnect($con);
+	}
 ?>
