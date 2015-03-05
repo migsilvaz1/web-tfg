@@ -11,7 +11,7 @@
 ?>
 <head>
 	<title>Exportar</title>
-	<LINK REL=StyleSheet HREF="export_db.css" TYPE="text/css" MEDIA=screen>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
 	<div id="inicio" class="container">

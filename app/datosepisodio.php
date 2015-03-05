@@ -13,10 +13,26 @@
 ?>
 <head>
 	<title>Datos del episodio</title>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
-	<div id="datosepisodio" class="container">
-		<div id="formulario" class="jumbotron">
+	<div id="inicio" class="container">
+		<!-- Barra lateral -->
+		<div id="blateral" class="jumbotron col-md-4">
+			<h3>Lista de pacientes</h3>
+			<ul>
+				<?php 
+					foreach ($pacietnes as $paciente) {
+						$nombre = $paciente['nombre'];
+						$id = $paciente['id_paciente'];
+						echo "<li><a href=\"datospaciente.php?idpaciente=$id\">$nombre</a></li>";
+					}
+					?>
+			</ul>
+		</div>
+		<!-- Fin Barra -->
+		<div class="col-md-1"></div>
+		<div id="formulario" class="jumbotron col-md-7">
 			<form action="inicio.php" method="post">
 				<div id="grupo1">
 					<div id="titulo1">

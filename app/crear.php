@@ -46,7 +46,7 @@
 ?>
 <head>
 	<title>Crear</title>
-	<LINK REL=StyleSheet HREF="inicio.css" TYPE="text/css" MEDIA=screen>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
 	<div id="inicio" class="container">

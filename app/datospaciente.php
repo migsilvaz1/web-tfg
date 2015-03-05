@@ -34,7 +34,7 @@
 ?>
 <head>
 	<title>Datos Paciente</title>
-	<LINK REL=StyleSheet HREF="datospaciente.css" TYPE="text/css" MEDIA=screen>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
 	<div id="inicio" class="container">
