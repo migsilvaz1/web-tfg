@@ -109,14 +109,16 @@
 			</form>
 			<div id="grupo2">
 				<h3 id="titulo2">Factores de riesgo</h3>
-					<ul>
+				<div class="lista">
+					<ol>
 						<?php
 							foreach ($factores_paciente as $factor) {
 								$nombre_factor = $factor['nombre'];
 								echo "<li>$nombre_factor</li>";
 							}
 						?>
-					</ul>
+					</ol>
+				</div>
 					<div id="botonesfc">
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modFactores">
 							Modificar
@@ -127,15 +129,22 @@
 					<h3 id="titulo3">
 						Episodios
 					</h3>
-					<ul>
+					<div class="lista">
+					<ol id="listaepisodios">
 						<?php
 							foreach ($episodios as $episodio) {
 								$idepisodio = $episodio['id_episodio'];
 								$nepisodio = $episodio['nombre'];
-								echo "<li><a href=\"datosepisodio.php?idepisodio=$idepisodio\">$nepisodio</a></li>";
+								echo "<li><a href=\"datosepisodio.php?idepisodio=$idepisodio&idpaciente=$id\">$nepisodio</a></li>";
 							}
 						?>
-					</ul>
+					</ol>
+				</div>
+				<div id="botonnuevoep">
+						<a href="datosepisodio.php?idepisodio=0&idpaciente=<?php echo $id ?>"\><button type="button" class="btn btn-default" data-toggle="modal" data-target="#modFactores">
+							Nuevo
+						</button></a>
+					</div>
 				</div>
 
 			<!-- Modal -->
@@ -150,6 +159,7 @@
 						</div>
 						<div class="modal-body">
 							<form action="<?php echo"datospaciente.php?idpaciente=$id" ?>" method="post" class="form-horizontal">
+								<div class="lista" style="height: 50%;">
 								<?php
 									$cont = 0;
 									foreach ($factores_posibles as $fact){
@@ -178,6 +188,7 @@
 										$cont++;
 									}
 								?>
+								</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">
