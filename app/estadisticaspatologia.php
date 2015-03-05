@@ -21,6 +21,7 @@ if(!isset($_GET['idpatologia'])){
 		<!-- Barra lateral -->
 
 		<div id="blateral" class="jumbotron col-md-4">
+			<h3>Lista de patologias</h3>
 			<ul>
 				<?php
 				foreach ($patologias as $patologiaa) {
@@ -37,27 +38,34 @@ if(!isset($_GET['idpatologia'])){
 		<div class="col-md-1"></div>
 		<div class="jumbotron col-md-7">
 			<div id="grupo1">
-				<div id="titulo1">
+				<h3 id="titulo1">
 					Datos de la patología
+				</h3>
+								<div class="form-group">
+
+				<label class="form-group" id="plabel">Patologia: <?php echo $patologia['nombre']; ?></label>
 				</div>
-				<label id="plabel">Patologia: <?php echo $patologia['nombre']; ?></label>
-
-				<label id="pclabel">Porcentaje que ha presentado complicaciones: <?php echo porcentaje_complicaciones_patologia($id); ?></label>
-
-				<label id="emlabel">Edad media de los pacientes: <?php echo edad_media_pacientes_patologia($id); ?></label>
-
+				<div  class="form-group">
+				<label class="form-group" id="pclabel">Porcentaje que ha presentado complicaciones: <?php echo porcentaje_complicaciones_patologia($id); ?></label>
+				</div>
+				<div  class="form-group">
+				<label class="form-group" id="emlabel">Edad media de los pacientes: <?php echo edad_media_pacientes_patologia($id); ?></label>
+				</div>
+				<div  class="form-group">
 				<!--<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>-->
 				<label id="pslabel">Porcentaje de pacientes por sexo</label>
-				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, H); ?></label><label id="psmlabel">Mujeres:  <?php echo sexo_patologia($id, M); ?></label>
-				<label id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?></label>
-
+				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, H); ?></label>
+				<label id="psmlabel">Mujeres:  <?php echo sexo_patologia($id, M); ?></label>
+								</div>
+				<div  class="form-group">
+				<label class="form-group" id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?></label>
+</div>
 			</div>
-			<div id="botones">
-				imprimir
-			</div>
+				<div id="botones" class="pull-right">
+					<input type="submit" class="btn btn-default" value="Imprimir">
+				</div>
 
 		</div>
 	</div>
 </body>
-<?php }
-?>
+<?php } ?>

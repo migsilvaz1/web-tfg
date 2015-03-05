@@ -47,7 +47,7 @@
 								<a role="menuitem" tabindex="-1" href="#">Generales</a>
 							</li>
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="estadisticaspatologia.php">Patolog&iacute;as</a>
+								<a role="menuitem" tabindex="-1" href="estadisticaspatologiaint.php">Patolog&iacute;as</a>
 							</li>
 						</ul>
 					</li>
