@@ -13,7 +13,7 @@
 		if(isset($_POST['paciente-submit'])){
 			$num_historial = $_REQUEST['nhistorial'];
 			$nombre = $_REQUEST['nombrepaciente'];
-			$fecha_nac = $_REQUEST['fechanacimiento'];
+			$fecha_nac = date_format(date_create_from_format("d/m/Y", $_REQUEST['fechanacimiento']), "Y-m-d");
 			$sexo = $_REQUEST['sexo'];
 			$enfermedades = $_REQUEST['enfermedadesconocidas'];
 			update_paciente($id, $num_historial, $nombre, $fecha_nac, $sexo, $enfermedades, null, null);
@@ -78,7 +78,7 @@
 					<div class="form-group">
 						<label id="fnlabel" for="fechanacimiento" class="col-sm-3 control-label">Fecha nacimiento</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<?php echo $paciente['fechaNacimiento']; ?>">
+							<input type="text" class="form-control" id="fechanacimiento" name="fechanacimiento" value="<?php echo date("d/m/Y", strtotime($paciente['fechaNacimiento'])); ?>">
 						</div>
 					</div>
 					<div class="form-group">

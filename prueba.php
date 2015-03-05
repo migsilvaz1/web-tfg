@@ -1,5 +1,9 @@
 <?php
 	include '/services/pacienteService.php';
-	$id = create_paciente("numeroHistorial", "nombre", '1987-1-1', null, null, null, null);
-	echo $id;
+	$fecha_str = "13/11/1987";
+// 	guardar
+	$mysqltime = date_format(date_create_from_format("d/m/Y", $fecha_str), "Y-m-d");
+// 	sacar
+	$paciente = get_by_id_paciente(6);
+	echo date("d/m/Y", strtotime($paciente['fechaNacimiento']));
 ?>

@@ -28,9 +28,9 @@
 	if(!empty($_REQUEST['nhistorial'])){
 		$num_historial = $_REQUEST['nhistorial'];
 		$nombre = $_REQUEST['nombrepaciente'];
-		$fecha_nac = $_REQUEST['fechanacimiento'];
+		$fecha_nac =date_format(date_create_from_format("d/m/Y", $_REQUEST['fechanacimiento']), "Y-m-d");
 		$nombre_episodio = $_REQUEST['nombreepisodio'];
-		$fecha_episodio = $_REQUEST['fechaepisodio'];
+		$fecha_episodio = date_format(date_create_from_format("d/m/Y", $_REQUEST['fechaepisodio']), "Y-m-d");
 		$id_servicio = $_REQUEST['idservicio'];
 		$id_patologia = $_REQUEST['idpatologia'];
 		$id_tipop = $_REQUEST['idtipop'];
@@ -102,7 +102,7 @@
 					<div class="form-group">
 						<label id="fnlabel" for="fechanacimiento" class="col-sm-2 control-label">Fecha Nacimiento</label>
 						<div class="col-sm-10">
-							<input type="date" id="fechanacimiento" name="fechanacimiento" class="form-control">
+							<input type="date" id="fechanacimiento" name="fechanacimiento" placeholder="dd/mm/aaaa" class="form-control">
 						</div>
 					</div>
 				</div>
