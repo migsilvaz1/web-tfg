@@ -103,7 +103,7 @@
 						</div>
 					</div>
 					<div id="botonesdp">
-						<input type="submit" class="btn btn-default" name="paciente-submit" value="Guardar">
+						<input type="submit" class="btn btn-default pull-right" name="paciente-submit" value="Guardar">
 					</div>
 				</div>
 			</form>
@@ -120,7 +120,7 @@
 					</ol>
 				</div>
 					<div id="botonesfc">
-						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modFactores">
+						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modFactores">
 							Modificar
 						</button>
 					</div>
@@ -141,7 +141,7 @@
 					</ol>
 				</div>
 				<div id="botonnuevoep">
-						<a href="datosepisodio.php?idepisodio=0&idpaciente=<?php echo $id ?>"\><button type="button" class="btn btn-default" data-toggle="modal" data-target="#modFactores">
+						<a href="datosepisodio.php?idepisodio=0&idpaciente=<?php echo $id ?>"\><button type="button" class="btn btn-default pull-right" data-toggle="modal">
 							Nuevo
 						</button></a>
 					</div>
