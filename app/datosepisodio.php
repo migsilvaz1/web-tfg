@@ -158,8 +158,9 @@
 							</select>
 						</div>
 					</div>
-					<div id="botonesdp">
-						<input type="submit" class="btn btn-default" name="episodio-submit" value="Guardar">
+					<div id="botonesdp" class="col-md-12">
+						<input type="submit" class="btn btn-default pull-right" name="episodio-submit" value="Guardar">
+						<a href="datospaciente.php?idpaciente=<?php echo $id_paciente; ?>"><button type="button" class="btn btn-default pull-right">Volver</button></a>
 					</div>
 				</div>
 				</form>
