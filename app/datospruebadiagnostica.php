@@ -8,7 +8,7 @@
 		$error = false;
 		$action = false;
 		if(isset($_POST['pdiag-submit'])){
-			if(!isset($_POST['nombreprueba'])){
+			if($_POST['nombreprueba']==""){
 				$error = true;
 			}else{
 				if($id_pdiag == 0){
