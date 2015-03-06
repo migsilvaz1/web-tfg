@@ -44,7 +44,7 @@
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Estad&iacute;sticas<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="#">Generales</a>
+								<a role="menuitem" tabindex="-1" href="estadisticasgeneralesint.php">Generales</a>
 							</li>
 							<li role="presentation">
 								<a role="menuitem" tabindex="-1" href="estadisticaspatologiaint.php">Patolog&iacute;as</a>
