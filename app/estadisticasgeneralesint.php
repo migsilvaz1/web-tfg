@@ -1,9 +1,9 @@
 <?php
 include "menu.php";
-$patologias = get_all_patologia();
+$radiologos = get_all_radiologo();
 ?>
 <head>
-	<title>Inicio</title>
+	<title>Estadisticas</title>
 </head>
 <body>
 	<div id="inicio" class="container" style="margin-top: 60px;">
@@ -11,13 +11,14 @@ $patologias = get_all_patologia();
 		<!-- Barra lateral -->
 
 		<div id="blateral" class="jumbotron col-md-4">
-			<h3>Lista de patologias</h3>
+			<h3>Lista de radiologos</h3>
 			<ul>
+				<li><a href="estadisticasgenerales.php?idradiologo=0">Todos</li>
 				<?php
-				foreach ($patologias as $patologiaa) {
-					$nombrea = $patologiaa['nombre'];
-					$ida = $patologiaa['id_patologia'];
-					echo "<li><a href=\"estadisticaspatologia.php?idpatologia=$ida\">$nombrea</a></li>";
+				foreach ($radiologos as $radiologoa) {
+					$nombrea = $radiologoa['nombre'];
+					$ida = $radiologoa['id_radiologo'];
+					echo "<li><a href=\"estadisticasgenerales.php?idradiologo=$ida\">$nombrea</a></li>";
 				}
 				?>
 			</ul>
@@ -28,24 +29,13 @@ $patologias = get_all_patologia();
 		<div class="col-md-1"></div>
 		<div class="jumbotron col-md-7">
 			<div id="grupo1">
-				<h3 id="titulo1"> Datos de la patología </h3>
+				<h3 id="titulo1"> Datos del radiologo </h3>
 				<div class="form-group">
-					<label class="form-group"  id="plabel">Patologia: </label>
+					<label class="form-group"  id="nlabel">Nombre: </label>
 				</div>
 				<div  class="form-group">
-					<label class="form-group"  id="pclabel">Porcentaje que ha presentado complicaciones: </label>
+					<label class="form-group"  id="nelabel">Número de episodios atendidos: </label>
 				</div>
-				<div class="form-group">
-					<label class="form-group"  id="emlabel">Edad media de los pacientes: </label>
-				</div>
-				<div class="form-group">
-					<!--<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>-->
-						<label  id="pslabel">Porcentaje de pacientes por sexo</label>
-						<label id="pshlabel">Hombres: </label><label id="psmlabel">Mujeres: </label>
-					</div>
-					<div class="form-group">
-						<label class="form-group"  id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: </label>
-					</div>
-				</div>
+				
 			</div>
 </body>
