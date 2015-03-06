@@ -3,6 +3,18 @@
 }
 #blateral{
 	height: 88%;
-	scroll;
+	overflow: scroll;
 	overflow-x: hidden;
+}
+.lista{
+	height: 100px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+/*Colores*/
+body{
+	background-color: #3186AD;
+}
+.navbar{
+	background-color: #1B4C62;
 }
