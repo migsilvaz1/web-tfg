@@ -75,7 +75,7 @@
 									foreach ($radiologos as $value) {
 										$selected = false;
 										if($id_pdiag != 0){
-											if($value['id_radiologo'] == $episodio['id_radiologo']){
+											if($value['id_radiologo'] == $pdiag['id_radiologo']){
 												$selected = true;
 											}
 										}
