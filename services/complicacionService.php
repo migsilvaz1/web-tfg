@@ -43,7 +43,7 @@
 	}
 	function update_complicacion($id, $nombre, $mtemprana, $mtardia){
 		$con = connect();
-		$stmt = $con->prepare('UPDATE complicaciones SET nombre = :nombre, mortalidadTemprana = :mtemprana, mortalidadTardia = :mtardia WHERE id_centro = :id');
+		$stmt = $con->prepare('UPDATE complicaciones SET nombre = :nombre, mortalidadTemprana = :mtemprana, mortalidadTardia = :mtardia WHERE id_complicacion = :id');
 		$stmt->bindParam(':id', $id);
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->bindParam(':mtemprana', $mtemprana);
