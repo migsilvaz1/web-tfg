@@ -1,6 +1,6 @@
 <?php
 include "menu.php";
-
+include ('fpdf/fpdf.php');
 $patologias = get_all_patologia();
 if(!isset($_GET['idpatologia'])){
 		header("Location: error.php");
@@ -11,9 +11,49 @@ if(!isset($_GET['idpatologia'])){
 
 
 
+
+
+		/* tenemos que generar una instancia de la clase */
+		if(isset($_POST['imprimir'])){
+			$pdf = new FPDF();
+
+			$pdf->AddPage();
+
+			/* seleccionamos el tipo, estilo y tamaño de la letra a utilizar */
+
+			$pdf->SetFont('Helvetica', 'B', 14);
+
+			$pdf->Write (7,"ESTADISTICAS: ");
+			$pdf->Write (7,$patologia['nombre']);
+			$pdf->Ln();
+			$pdf->Ln();
+			$pdf->Write (5,"Porcentaje que ha presentado complicaciones: ");
+			$pdf->Write (5,porcentaje_complicaciones_patologia($id));
+			$pdf->Ln();
+			$pdf->Write (5,"Edad media de los pacientes: ");
+			$pdf->Write (5,edad_media_pacientes_patologia($id));
+			$pdf->Ln();
+			$pdf->Write (5,"Porcentaje de pacientes por sexo: ");
+			$pdf->Ln();
+			$pdf->Write (5,"Hombres: ");
+			$pdf->Write (5, "ARREGLAR   ");
+			$pdf->Write (5,"Mujeres: ");
+			$pdf->Write (5, "ARREGLAR");
+			$pdf->Ln();
+			$pdf->Write (5,"Numero de pacietes que han fallecido en un periodo de 30 dias: ");
+			$pdf->Write (5,porcentaje_complicaciones_patologia($id));
+			$pdf->Ln();
+			
+			$pdf->Output("prueba.pdf",'F');
+
+			echo "<script language='javascript'> window.open('prueba.pdf');</script>";//paral archivo pdf generado
+}
+
+
+
 ?>
 <head>
-	<title>Inicio</title>
+	<title>Estadisticas</title>
 </head>
 <body>
 	<div id="inicio" class="container" style="margin-top: 60px;">
@@ -37,6 +77,7 @@ if(!isset($_GET['idpatologia'])){
 
 		<div class="col-md-1"></div>
 		<div class="jumbotron col-md-7">
+			<form name='pdf' method='post' action='estadisticaspatologia.php?idpatologia=<?php echo $id; ?>'>
 			<div id="grupo1">
 				<h3 id="titulo1">
 					Datos de la patología
@@ -62,7 +103,7 @@ if(!isset($_GET['idpatologia'])){
 </div>
 			</div>
 				<div id="botones" class="pull-right">
-					<input type="submit" class="btn btn-default" value="Imprimir">
+					<input id="imprimir" name="imprimir" type="submit" class="btn btn-default" value="Imprimir">
 				</div>
 
 		</div>
