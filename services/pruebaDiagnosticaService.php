@@ -40,7 +40,7 @@
 		disconnect($con);
 		return $lastInsertId;
 	}
-	function update_pdiagnostica($id, $nombre){
+	function update_pdiagnostica($id, $nombre, $idRadiologo){
 		$con = connect();
 		$stmt = $con->prepare('UPDATE pruebasdiagnosticas SET nombre = :nombre, id_radiologo = :idRadiologo WHERE id_pdiagnostica = :id');
 		$stmt->bindParam(':id', $id);
