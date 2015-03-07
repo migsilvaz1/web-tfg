@@ -1,7 +1,7 @@
 <?php
 	include_once"connection.php";
 	
-	function get_by_id_documento($id, $modo){
+	function get_by_id_documento($id, $mode){
 		$query = "";
 		if($mode == "img_pd"){
 			$query = "SELECT * FROM imagenes_pdiagnostica WHERE id_imagen =:id";
@@ -21,7 +21,7 @@
 		return $res;
 	}
 	
-	function get_by_id_relacionada($id, $modo){
+	function get_by_id_relacionada($id, $mode){
 		$query = "";
 		if($mode == "img_pd"){
 			$query = "SELECT * FROM imagenes_pdiagnostica WHERE id_pdiagnostica =:id";
@@ -41,7 +41,7 @@
 		return $res;
 	}
 	
-	function create_documento($nombre, $blob, $id_asociada, $modo){
+	function create_documento($nombre, $blob, $id_asociada, $mode){
 		$query = "";
 		if($mode == "img_pd"){
 			$query = "INSERT INTO imagenes_pdiagnostica VALUES(NULL,:name,:blob,:id_asociada)";
@@ -55,7 +55,7 @@
 		$con = connect();
 		$stmt = $con->prepare($query);
 		$stmt->bindParam(':name', $nombre);
-		$stmt->bindParam(':blob', $blob);
+		$stmt->bindParam(':blob', $blob, PDO::PARAM_LOB);
 		$stmt->bindParam(':id_asociada', $id_asociada);
 		$stmt->execute();
 		$lastInsertId = $con->lastInsertId();
@@ -63,7 +63,7 @@
 		return $lastInsertId;
 	}
 	
-	function update_documento($id, $nombre, $blob, $id_asociada, $modo){
+	function update_documento($id, $nombre, $blob, $id_asociada, $mode){
 		$query = "";
 		if($mode == "img_pd"){
 			$query = "UPDATE imagenes_pdiagnostica SET image_name =:name, image =:blob, id_pdiagnostica =:id_asociada WHERE id_imagen =:id)";
@@ -84,7 +84,7 @@
 		disconnect($con);
 	}
 	
-	function delete_documento($id, $modo){
+	function delete_documento($id, $mode){
 		$query = "";
 		if($mode == "img_pd"){
 			$query = "DELETE FROM imagenes_pdiagnostica WHERE id_imagen =:id";

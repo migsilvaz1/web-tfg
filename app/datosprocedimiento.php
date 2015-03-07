@@ -171,9 +171,28 @@
 							</li>
 						</ol>
 						<div id="botonesimg">
-							<input type="submit" value="Eliminar imagen">
-							<input type="submit" value="Añadir imagen">
-							<input type="submit" value="Editar imagen">
+							<a href="<?php echo"save.php?mode=img_pro&idas=$id_prod&other=$id_episodio" ?>"><?php if($id_pdiag==0){
+							echo "<button type=\"button\" class=\"btn btn-default pull-right\" disabled=\"true\">Añadir Imagen</button>";
+						}else{
+							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button>";
+						}?></a>
+						</div>
+					</div>
+					<div id="grupo4">
+						<div id="titulo4">
+							<h3>Documentos Asociados</h3>
+						</div>
+						<ol>
+							<li>
+								Prueba
+							</li>
+						</ol>
+						<div id="botonesimg">
+							<a href="<?php echo"save.php?mode=doc&idas=$id_prod&other=$id_episodio" ?>"><?php if($id_pdiag==0){
+							echo "<button type=\"button\" class=\"btn btn-default pull-right\" disabled=\"true\">Añadir Imagen</button>";
+						}else{
+							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Documento</button>";
+						}?></a>
 						</div>
 					</div>
 				</div>

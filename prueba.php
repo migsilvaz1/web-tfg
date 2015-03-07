@@ -1,9 +1,11 @@
 <?php
-	include '/services/pacienteService.php';
-	$fecha_str = "13/11/1987";
-// 	guardar
-	$mysqltime = date_format(date_create_from_format("d/m/Y", $fecha_str), "Y-m-d");
-// 	sacar
-	$paciente = get_by_id_paciente(6);
-	echo date("d/m/Y", strtotime($paciente['fechaNacimiento']));
+	include '/services/documentosService.php';
+	$image = get_by_id_documento(4, 'img_pd');
+	// header('Content-Type: image/jpeg');
+	// echo $image['image'];
 ?>
+<html>
+	<body>
+		<img src="data:image/jpg;base64,<?php echo base64_encode($image['image']); ?>" />
+	</body>
+</html>
