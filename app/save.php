@@ -4,7 +4,7 @@
 		header("Location: error.php");
 	}else{
 		if(isset($_FILES['userfile'])){
-			$target_dir = "docs/";
+			$target_dir = "C:/xampp/htdocs/root/docs/";
 			$name = basename($_FILES["userfile"]["name"]);
 			$target_file = $target_dir . $name;
 			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -36,23 +36,43 @@
 			}
 			header($url);
 		}
+	$pacientes = get_all_paciente();
+	$mode = $_GET['mode'];
+	$idas = $_GET['idas'];
+	$other = $_GET['other'];
 ?>
-<html>
-	<head></head>
-	<body>
-		<?php
-		if(isset($_FILES['userfile'])){
-			print_r($_FILES);
-			print_r($target_file);
-		}
-		?>
-		<!-- El tipo de codificación de datos, enctype, se DEBE especificar como a continuación -->
-		<form enctype="multipart/form-data" action="save.php" method="POST">
-			<!-- El nombre del elemento de entrada determina el nombre en el array $_FILES -->
-			Enviar este archivo:
-			<input name="userfile" type="file" />
-			<input type="submit" value="Send File" />
-		</form>
+<head>
+	<title>Guardar</title>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
+</head>
+<div id="inicio" class="container">
+		<!-- Barra lateral -->
+		<div id="blateral" class="jumbotron col-md-4">
+			<h3>Lista de pacientes</h3>
+			<ul>
+				<?php 
+					foreach ($pacientes as $paciente) {
+						$nombre = $paciente['nombre'];
+						$lid = $paciente['id_paciente'];
+						echo "<li><a href=\"datospaciente.php?idpaciente=$lid\">$nombre</a></li>";
+					}
+					?>
+			</ul>
+		</div>
+		<!-- Fin Barra -->
+		<div class="col-md-1"></div>
+		<div id="formulario" class="jumbotron col-md-7">
+			<form enctype="multipart/form-data" action="<?php echo "save.php?mode=$mode&idas=$idas&other=$other" ?>" method="POST" class="form-horizontal">
+				<div class="form-group">
+						<label id="rlabel" for="resultado" class="col-sm-3 control-label">Selecciona el archivo</label>
+						<div class="col-sm-9">
+							<input name="userfile" type="file"/>
+						</div>
+					</div>
+				<input type="submit" value="Subir" class="btn btn-default pull-right"/>
+			</form>
+		</div>
+		</div>
 	</body>
 </html>
 <?php } ?>

@@ -111,11 +111,7 @@
 						}else{
 							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button>";
 						}?></a>
-				</div>
-				
-				
-				
-			
+				</div>		
 		</div>
 	</div>
 </body>

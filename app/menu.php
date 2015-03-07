@@ -15,6 +15,7 @@
 	include"../services/procedimientoService.php";
 	include"../services/pruebaDiagnosticaService.php";
 	include"../services/relacionesService.php";
+	include"../services/documentosService.php";
 ?>
 <head>
 	<meta charset="UTF-8" />
