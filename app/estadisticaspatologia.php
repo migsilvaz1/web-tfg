@@ -36,9 +36,9 @@ if(!isset($_GET['idpatologia'])){
 			$pdf->Write (5,"Porcentaje de pacientes por sexo: ");
 			$pdf->Ln();
 			$pdf->Write (5,"Hombres: ");
-			$pdf->Write (5, "ARREGLAR   ");
-			$pdf->Write (5,"Mujeres: ");
-			$pdf->Write (5, "ARREGLAR");
+			$pdf->Write (5, sexo_patologia($id, "H"));
+			$pdf->Write (5,"     Mujeres: ");
+			$pdf->Write (5, sexo_patologia($id, "M"));
 			$pdf->Ln();
 			$pdf->Write (5,"Numero de pacietes que han fallecido en un periodo de 30 dias: ");
 			$pdf->Write (5,porcentaje_complicaciones_patologia($id));
@@ -95,8 +95,8 @@ if(!isset($_GET['idpatologia'])){
 				<div  class="form-group">
 				<!--<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>-->
 				<label id="pslabel">Porcentaje de pacientes por sexo</label>
-				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, H); ?></label>
-				<label id="psmlabel">Mujeres:  <?php echo sexo_patologia($id, M); ?></label>
+				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, "H"); ?></label>
+				<label id="psmlabel">Mujeres:  <?php echo sexo_patologia($id, "M"); ?></label>
 								</div>
 				<div  class="form-group">
 				<label class="form-group" id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?></label>
