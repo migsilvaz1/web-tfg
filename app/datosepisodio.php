@@ -180,9 +180,13 @@
 					</ol>
 					</div>
 					<div id="bndiag">
-						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modFactores">
-							Nuevo
-						</button>
+						<?php if($id==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Nuevo</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<button type=\"button\" class=\"btn btn-default pull-right\" data-toggle=\"modal\" data-target=\"#modFactores\">Nuevo</button>";
+						}?>
+						
 					</div>
 				
 				<div id="grupo2">
@@ -201,9 +205,12 @@
 					</ol>
 					</div>
 					<div id="bnpdiag">
-						<a href="datospruebadiagnostica.php?idpdiag=0&idepisodio=<?php echo $id ?>"\><button type="button" class="btn btn-default pull-right">
-							Nuevo
-						</button></a>
+						<?php if($id==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Nuevo</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<a href=\"datospruebadiagnostica.php?idpdiag=0&idepisodio=$id\"><button type=\"button\" class=\"btn btn-default pull-right\">Nuevo</button></a>";
+						}?>
 					</div>
 				
 				<div id="grupo3">
@@ -223,9 +230,12 @@
 					</ol>
 					</div>
 					<div id="bndiag">
-						<a href="datosprocedimiento.php?idprod=0&idepisodio=<?php echo $id ?>"\><button type="button" class="btn btn-default pull-right">
-							Nuevo
-						</button></a>
+						<?php if($id==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Nuevo</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<a href=\"datosprocedimiento.php?idprod=0&idepisodio=$id\"><button type=\"button\" class=\"btn btn-default pull-right\">Nuevo</button></a>";
+						}?>
 					</div>
 				</div>
 			</div>

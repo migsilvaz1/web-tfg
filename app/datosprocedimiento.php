@@ -139,7 +139,12 @@
 						</ol>
 					</div>
 					<div id="botonesmaterial">
-						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modMaterial">Modificar</button>
+						<?php if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Modificar</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<button type=\"button\" class=\"btn btn-default pull-right\" data-toggle=\"modal\" data-target=\"#modMaterial\">Modificar</button>";
+						}?>
 					</div>
 
 					<div id="grupo3">
@@ -158,7 +163,12 @@
 							</ol>
 						</div>
 						<div id="botonescomplicaiones">
-							<a href="<?php echo"datoscomplicacion.php?idepisodio=$id_episodio$&idproc=$id_prod&idcomp=0" ?>"><button type="button" class="btn btn-default pull-right">Nueva</button></a>
+							<?php if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Nueva</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<a href=\"datoscomplicacion.php?idepisodio=$id_episodio$&idproc=$id_prod&idcomp=0\"><button type=\"button\" class=\"btn btn-default pull-right\">Nueva</button></a>";
+						}?>
 						</div>
 					</div>
 					<div id="grupo4">
@@ -171,11 +181,12 @@
 							</li>
 						</ol>
 						<div id="botonesimg">
-							<a href="<?php echo"save.php?mode=img_pro&idas=$id_prod&other=$id_episodio" ?>"><?php if($id_pdiag==0){
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\" disabled=\"true\">Añadir Imagen</button>";
+							<?php if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Añadir Imagen</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
 						}else{
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button>";
-						}?></a>
+							echo "<a href=\"save.php?mode=img_pro&idas=$id_prod&other=$id_episodio\"><button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button></a>";
+						}?>							
 						</div>
 					</div>
 					<div id="grupo4">
@@ -188,11 +199,12 @@
 							</li>
 						</ol>
 						<div id="botonesimg">
-							<a href="<?php echo"save.php?mode=doc&idas=$id_prod&other=$id_episodio" ?>"><?php if($id_pdiag==0){
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\" disabled=\"true\">Añadir Imagen</button>";
+							<?php if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Añadir Documento</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
 						}else{
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Documento</button>";
-						}?></a>
+							echo "<a href=\"save.php?mode=doc&idas=$id_prod&other=$id_episodio\"><button type=\"button\" class=\"btn btn-default pull-right\">Añadir Documento</button></a>";
+						}?>
 						</div>
 					</div>
 				</div>

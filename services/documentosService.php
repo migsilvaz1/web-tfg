@@ -36,7 +36,7 @@
 		$stmt = $con->prepare($query);
 		$stmt->bindParam(':id', $id);
 		$stmt->execute();
-		$res = $stmt->fetch(PDO::FETCH_ASSOC);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		disconnect($con);
 		return $res;
 	}

@@ -28,6 +28,7 @@
 		}
 		$episodio = get_by_id_episodio($id_episodio);
 		$id_paciente = $episodio['id_paciente'];
+		$imagenes = get_by_id_relacionada($id_pdiag, "img_pd");
 		
 ?>
 <head>
@@ -99,19 +100,26 @@
 					<div id="titulo2">
 						<h3>Im&aacute;genes Asociadas</h3>
 					</div>
-					<ol>
-						<li>
-							Prueba
-						</li>
-					</ol>
+					<div id="imagenes">
+						<?php
+							if(empty($imagenes)){
+								echo "No hay imagenes que mostrar";
+							}else{
+								foreach ($imagenes as $imagen) {
+									$src= base64_encode($imagen['image']);
+									echo "<img src=\"data:image/jpg;base64,$src\" class=\"img-responsive\" alt=\"Responsive image\">";
+								}
+							}
+						?>
+					</div>
 					<div id="botonesimg">
-					<a href="<?php echo"save.php?mode=img_pd&idas=$id_pdiag&other=$id_episodio" ?>">
 						<?php if($id_pdiag==0){
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\" disabled=\"true\">Añadir Imagen</button>";
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Añadir Imagen</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
 						}else{
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button>";
-						}?></a>
-				</div>		
+							echo "<a href=\"save.php?mode=img_pd&idas=$id_pdiag&other=$id_episodio\"><button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button></a>";
+						}?>
+					</div>		
 		</div>
 	</div>
 </body>
