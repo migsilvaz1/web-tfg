@@ -107,7 +107,8 @@
 							}else{
 								foreach ($imagenes as $imagen) {
 									$src= base64_encode($imagen['image']);
-									echo "<div class=\"col-md-4\"><img src=\"data:image/jpg;base64,$src\" class=\"img-rounded image-preview\" alt=\"Responsive image\"></div>";
+									$name = $imagen['image_name'];
+									echo "<div class=\"col-md-4\"><img src=\"data:image/jpg;base64,$src\" class=\"img-rounded image-preview\" alt=\"Responsive image\"><h4>$name</h4></div>";
 								}
 							}
 						?>

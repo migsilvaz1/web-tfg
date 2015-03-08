@@ -37,6 +37,8 @@
 			$procedimiento = get_by_id_procedimiento($id_prod);
 			$evolucion = get_by_id_evolucion($procedimiento['id_evolucion']);
 		}
+		$imagenes = get_by_id_relacionada($id_prod, 'img_pro');
+		$documentos = get_by_id_relacionada($id_prod, 'doc');
 		
 		if (isset($_POST['materiales-submit'])){
 			foreach ($materiales as $elem) {
@@ -175,11 +177,19 @@
 						<div id="titulo4">
 							<h3>Imagenes Asociadas</h3>
 						</div>
-						<ol>
-							<li>
-								Prueba
-							</li>
-						</ol>
+						<div id="imagenes" class="col-md-12 lista-imagenes">
+							<?php
+								if(empty($imagenes)){
+									echo "No hay imagenes que mostrar";
+								}else{
+									foreach ($imagenes as $imagen) {
+										$src= base64_encode($imagen['image']);
+										$name = $imagen['image_name'];
+										echo "<div class=\"col-md-4\"><img src=\"data:image/jpg;base64,$src\" class=\"img-rounded image-preview\" alt=\"Responsive image\"><h6>$name</h6></div>";
+									}
+								}
+							?>
+						</div>
 						<div id="botonesimg">
 							<?php if($id_prod==0){
 							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Añadir Imagen</button>
