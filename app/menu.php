@@ -25,7 +25,7 @@
 	<script src="/root/libs/js/bootstrap.js"></script>
 </head>
 <body>
-	<nav id="myNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav id="myNavbar" class="navbar navbar-fixed-top" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="container">
 			<div class="navbar-header">
