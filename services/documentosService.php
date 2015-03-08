@@ -36,7 +36,7 @@
 		$stmt = $con->prepare($query);
 		$stmt->bindParam(':id', $id);
 		$stmt->execute();
-		$res = $stmt->fetch(PDO::FETCH_ASSOC);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		disconnect($con);
 		return $res;
 	}
@@ -76,7 +76,7 @@
 		}
 		$con = connect();
 		$stmt = $con->prepare($query);
-		$stmt->bindParam(':name', $id);
+		$stmt->bindParam(':id', $id);
 		$stmt->bindParam(':name', $nombre);
 		$stmt->bindParam(':blob', $blob);
 		$stmt->bindParam(':id_asociada', $id_asociada);
@@ -97,9 +97,7 @@
 		}
 		$con = connect();
 		$stmt = $con->prepare($query);
-		$stmt->bindParam(':name', $nombre);
-		$stmt->bindParam(':blob', $blob);
-		$stmt->bindParam(':id_asociada', $id_asociada);
+		$stmt->bindParam(':id', $id);
 		$stmt->execute();
 		disconnect($con);
 	}

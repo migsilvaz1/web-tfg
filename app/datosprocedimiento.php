@@ -26,6 +26,13 @@
 				$action = true;
 			}
 		}
+		if(isset($_POST['delete-submit'])){
+			foreach ($_POST as $elemento) {
+				if(!empty($elemento)){
+					delete_documento($elemento, 'doc');
+				}
+			}
+		}
 		$tipos = get_all_tipo_procedimiento();
 		$pacientes = get_all_paciente();
 		$materiales = get_all_material_from_procedimiento($id_prod);
@@ -37,6 +44,8 @@
 			$procedimiento = get_by_id_procedimiento($id_prod);
 			$evolucion = get_by_id_evolucion($procedimiento['id_evolucion']);
 		}
+		$imagenes = get_by_id_relacionada($id_prod, 'img_pro');
+		$documentos = get_by_id_relacionada($id_prod, 'doc');
 		
 		if (isset($_POST['materiales-submit'])){
 			foreach ($materiales as $elem) {
@@ -50,6 +59,8 @@
 			$string = "datosprocedimiento.php?idepisodio=$id_episodio&idprod=$id_prod";
 			header("Location:$string");
 		}
+		$documentos = get_by_id_relacionada($id_prod, 'doc');
+		$path = "C:/xampp/htdocs/root/docs/";
 
 ?>
 <head>
@@ -139,7 +150,12 @@
 						</ol>
 					</div>
 					<div id="botonesmaterial">
-						<button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modMaterial">Modificar</button>
+						<?php if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Modificar</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<button type=\"button\" class=\"btn btn-default pull-right\" data-toggle=\"modal\" data-target=\"#modMaterial\">Modificar</button>";
+						}?>
 					</div>
 
 					<div id="grupo3">
@@ -158,42 +174,73 @@
 							</ol>
 						</div>
 						<div id="botonescomplicaiones">
-							<a href="<?php echo"datoscomplicacion.php?idepisodio=$id_episodio$&idproc=$id_prod&idcomp=0" ?>"><button type="button" class="btn btn-default pull-right">Nueva</button></a>
+							<?php if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Nueva</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<a href=\"datoscomplicacion.php?idepisodio=$id_episodio$&idproc=$id_prod&idcomp=0\"><button type=\"button\" class=\"btn btn-default pull-right\">Nueva</button></a>";
+						}?>
 						</div>
 					</div>
 					<div id="grupo4">
 						<div id="titulo4">
 							<h3>Imagenes Asociadas</h3>
 						</div>
-						<ol>
-							<li>
-								Prueba
-							</li>
-						</ol>
+						<div id="imagenes" class="col-md-12 lista-imagenes">
+							<?php
+								if(empty($imagenes)){
+									echo "No hay imagenes que mostrar";
+								}else{
+									foreach ($imagenes as $imagen) {
+										$src= base64_encode($imagen['image']);
+										$name = $imagen['image_name'];
+										$id_imagen = $imagen['id_imagen'];
+										echo "<div class=\"col-md-4\"><a href=\"editimage.php?mode=doc&idas=$id_prod&other=$id_episodio&id=$id_imagen\">
+										<img src=\"data:image/jpg;base64,$src\" class=\"img-rounded image-preview\" alt=\"Responsive image\"></a><h6>$name</h6></div>";
+									}
+								}
+							?>
+						</div>
 						<div id="botonesimg">
-							<a href="<?php echo"save.php?mode=img_pro&idas=$id_prod&other=$id_episodio" ?>"><?php if($id_pdiag==0){
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\" disabled=\"true\">Añadir Imagen</button>";
+							<?php if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Añadir Imagen</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
 						}else{
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button>";
-						}?></a>
+							echo "<a href=\"save.php?mode=img_pro&idas=$id_prod&other=$id_episodio\"><button type=\"button\" class=\"btn btn-default pull-right\">Añadir Imagen</button></a>";
+						}?>							
 						</div>
 					</div>
 					<div id="grupo4">
 						<div id="titulo4">
 							<h3>Documentos Asociados</h3>
 						</div>
-						<ol>
-							<li>
-								Prueba
-							</li>
-						</ol>
-						<div id="botonesimg">
-							<a href="<?php echo"save.php?mode=doc&idas=$id_prod&other=$id_episodio" ?>"><?php if($id_pdiag==0){
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\" disabled=\"true\">Añadir Imagen</button>";
-						}else{
-							echo "<button type=\"button\" class=\"btn btn-default pull-right\">Añadir Documento</button>";
-						}?></a>
+						<div class="lista">
+						<table class="table table-striped">
+							<form action="<?php echo"datosprocedimiento.php?idepisodio=$id_episodio&idprod=$id_prod"?>" method="post">
+							<?php
+								foreach ($documentos as $doc) {
+									$id_doc = $doc['id_doc'];
+									$filename = $doc['doc_name'];
+									$fullPath = $path . $filename;
+									file_put_contents($fullPath, $doc['doc']);
+									echo "<tr><td><a href=\"/root/docs/$filename\">$filename</a></td>
+									<td><input type=\"checkbox\" name=\"$id_doc\" value=\"$id_doc\"></td></tr>";
+								}
+							?>
+							
+						</table>
 						</div>
+						<div id="botonesimg">
+							<?php if(!empty($documentos)){
+								echo "<input type=\"submit\" class=\"btn btn-default pull-right\" name=\"delete-submit\" value=\"Eliminar Seleccionados\">";
+							}
+							if($id_prod==0){
+							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Añadir Documento</button>
+							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
+						}else{
+							echo "<a href=\"save.php?mode=doc&idas=$id_prod&other=$id_episodio\"><button type=\"button\" class=\"btn btn-default pull-right\">Añadir Documento</button></a>";
+						}?>
+						</div></form>
 					</div>
 				</div>
 			</div>

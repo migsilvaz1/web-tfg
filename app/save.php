@@ -23,6 +23,8 @@
 			$id_asociada = intval($_GET['idas']);
 			create_documento($name, $blob, $id_asociada, $mode);
 			fclose($blob);
+// 			Borrar el documento
+			unlink($target_file);
 // 			Volver a donde venias
 			$url = "error.php";
 			$id_from = $_GET['idas'];

@@ -25,7 +25,7 @@
 	<script src="/root/libs/js/bootstrap.js"></script>
 </head>
 <body>
-	<nav id="myNavbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<nav id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="container">
 			<div class="navbar-header">
@@ -56,7 +56,7 @@
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Base de Datos<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" href="">Importar</a>
+								<a role="menuitem" tabindex="-1" href="import_db.php">Importar</a>
 							</li>
 							<li role="presentation">
 								<a role="menuitem" tabindex="-1" href="export_db.php">Exportar</a>

@@ -1,13 +1,38 @@
 <?php
 	include 'menu.php';
 	$pacietnes = get_all_paciente();
-	
+	//genera el fichero base
 	$DB_USER = "radio-user";
 	$DB_PASS = "radio";
 	$DB_NAME = "radiologia";
 	$command = "\"C:\\Program Files\\MySQL\\MySQL Server 5.6\\bin\\mysqldump.exe\" --opt --skip-extended-insert --complete-insert --user=".$DB_USER.
 	" --password=".$DB_PASS." ".$DB_NAME." > C:\\xampp\\htdocs\\root\\docs\\radiologia.sql";
 	exec($command, $ret_arr, $ret_code);
+	
+	//abrimos el fichero para introducir los comandos que faltan
+	$target_dir = "C:/xampp/htdocs/root/docs/";
+	$nombre = 'radiologia.sql';
+	$archivo = $target_dir . $nombre;
+	$file = fopen($archivo,'r+');
+	//sacamos el contenido
+	$contenido = fread($file,filesize($archivo));
+	fclose($file);
+	// Separar linea por linea
+	$contenido = explode("\n",$contenido);
+	 
+	// Modificar lineas deseadas
+	$contenido[5] = "CREATE DATABASE IF NOT EXISTS `radiologia` CHARACTER SET utf8 COLLATE utf8_general_ci;
+	USE `radiologia`;";
+	$contenido[count($contenido)-1] = "commit;";
+	 
+	// Unir archivo
+	$contenido = implode("\r\n",$contenido);
+	 
+	// Guardar Archivo
+	$file = fopen($archivo,'w');
+	fwrite($file,$contenido);
+	fclose($file);
+ 
 ?>
 <head>
 	<title>Exportar</title>

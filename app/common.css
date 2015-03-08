@@ -11,10 +11,17 @@
 	overflow: scroll;
 	overflow-x: hidden;
 }
+.lista-imagenes{
+	height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+.image-preview{
+	height: 140px;
+	width: 140px;
+	margin-top: 10px;
+}
 /*Colores*/
 body{
-	background-color: #3186AD;
-}
-.navbar{
-	background-color: #1B4C62;
+	background-color: #97ae9a;
 }
