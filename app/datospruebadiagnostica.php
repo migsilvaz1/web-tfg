@@ -100,14 +100,14 @@
 					<div id="titulo2">
 						<h3>Im&aacute;genes Asociadas</h3>
 					</div>
-					<div id="imagenes">
+					<div id="imagenes" class="col-md-12">
 						<?php
 							if(empty($imagenes)){
 								echo "No hay imagenes que mostrar";
 							}else{
 								foreach ($imagenes as $imagen) {
 									$src= base64_encode($imagen['image']);
-									echo "<img src=\"data:image/jpg;base64,$src\" class=\"img-responsive\" alt=\"Responsive image\">";
+									echo "<div class=\"col-md-4\"><img src=\"data:image/jpg;base64,$src\" class=\"img-rounded image-preview\" alt=\"Responsive image\"></div>";
 								}
 							}
 						?>

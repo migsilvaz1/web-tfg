@@ -11,6 +11,11 @@
 	overflow: scroll;
 	overflow-x: hidden;
 }
+.image-preview{
+	height: 140px;
+	width: 140px;
+	margin-top: 10px;
+}
 /*Colores*/
 body{
 	background-color: #97ae9a;
