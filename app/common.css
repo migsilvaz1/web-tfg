@@ -11,6 +11,11 @@
 	overflow: scroll;
 	overflow-x: hidden;
 }
+.lista-imagenes{
+	height: 300px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
 .image-preview{
 	height: 140px;
 	width: 140px;

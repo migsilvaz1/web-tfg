@@ -100,7 +100,7 @@
 					<div id="titulo2">
 						<h3>Im&aacute;genes Asociadas</h3>
 					</div>
-					<div id="imagenes" class="col-md-12">
+					<div id="imagenes" class="col-md-12 lista-imagenes">
 						<?php
 							if(empty($imagenes)){
 								echo "No hay imagenes que mostrar";
