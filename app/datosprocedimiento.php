@@ -26,6 +26,13 @@
 				$action = true;
 			}
 		}
+		if(isset($_POST['delete-submit'])){
+			foreach ($_POST as $elemento) {
+				if(!empty($elemento)){
+					delete_documento($elemento, 'doc');
+				}
+			}
+		}
 		$tipos = get_all_tipo_procedimiento();
 		$pacientes = get_all_paciente();
 		$materiales = get_all_material_from_procedimiento($id_prod);
@@ -52,6 +59,8 @@
 			$string = "datosprocedimiento.php?idepisodio=$id_episodio&idprod=$id_prod";
 			header("Location:$string");
 		}
+		$documentos = get_by_id_relacionada($id_prod, 'doc');
+		$path = "C:/xampp/htdocs/root/docs/";
 
 ?>
 <head>
@@ -203,19 +212,33 @@
 						<div id="titulo4">
 							<h3>Documentos Asociados</h3>
 						</div>
-						<ol>
-							<li>
-								Prueba
-							</li>
-						</ol>
+						<div class="lista">
+						<table class="table table-striped">
+							<form action="<?php echo"datosprocedimiento.php?idepisodio=$id_episodio&idprod=$id_prod"?>" method="post">
+							<?php
+								foreach ($documentos as $doc) {
+									$id_doc = $doc['id_doc'];
+									$filename = $doc['doc_name'];
+									$fullPath = $path . $filename;
+									file_put_contents($fullPath, $doc['doc']);
+									echo "<tr><td><a href=\"/root/docs/$filename\">$filename</a></td>
+									<td><input type=\"checkbox\" name=\"$id_doc\" value=\"$id_doc\"></td></tr>";
+								}
+							?>
+							
+						</table>
+						</div>
 						<div id="botonesimg">
-							<?php if($id_prod==0){
+							<?php if(!empty($documentos)){
+								echo "<input type=\"submit\" class=\"btn btn-default pull-right\" name=\"delete-submit\" value=\"Eliminar Seleccionados\">";
+							}
+							if($id_prod==0){
 							echo "<div class=\"pull-right\"><button type=\"button\" class=\"btn btn-default\" disabled=\"true\">Añadir Documento</button>
 							<span class=\"glyphicon glyphicon-info-sign\" aria-hidden=\"true\" title=\"Es necesario guardar primero\"></span></div>";
 						}else{
 							echo "<a href=\"save.php?mode=doc&idas=$id_prod&other=$id_episodio\"><button type=\"button\" class=\"btn btn-default pull-right\">Añadir Documento</button></a>";
 						}?>
-						</div>
+						</div></form>
 					</div>
 				</div>
 			</div>
