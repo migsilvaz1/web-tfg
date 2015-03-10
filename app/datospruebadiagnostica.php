@@ -109,7 +109,7 @@
 									$src= base64_encode($imagen['image']);
 									$name = $imagen['image_name'];
 									$id_imagen = $imagen['id_imagen'];
-									echo "<div class=\"col-md-4\"><a href=\"editimage.php?mode=img_pd&idas=$id_pdiag&other=$id_episodio&id=$id_imagen\">
+									echo "<div class=\"col-md-4\"><a href=\"viewimage.php?mode=img_pd&idas=$id_pdiag&other=$id_episodio&id=$id_imagen\">
 									<img src=\"data:image/jpg;base64,$src\" class=\"img-rounded image-preview\" alt=\"Responsive image\"></a><h6>$name</h6></div>";
 								}
 							}
