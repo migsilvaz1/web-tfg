@@ -3,6 +3,7 @@ include "menu.php";
 include ('fpdf/fpdf.php');
 $patologias = get_all_patologia();
 $tprocedimientos = get_all_tipo_procedimiento();
+$factores = get_all_factor();
 if(!isset($_GET['idpatologia'])){
 		header("Location: error.php");
 	}else{
@@ -30,6 +31,7 @@ if(!isset($_GET['idpatologia'])){
 			$pdf->Ln();
 			$pdf->Write (5,"Porcentaje que ha presentado complicaciones: ");
 			$pdf->Write (5,porcentaje_complicaciones_patologia($id));
+			$pdf->Write (5, "%");
 			$pdf->Ln();
 			$pdf->Write (5,"Edad media de los pacientes: ");
 			$pdf->Write (5,edad_media_pacientes_patologia($id));
@@ -38,13 +40,23 @@ if(!isset($_GET['idpatologia'])){
 			$pdf->Ln();
 			$pdf->Write (5,"Hombres: ");
 			$pdf->Write (5, sexo_patologia($id, "H"));
+			$pdf->Write (5, "%");
 			$pdf->Write (5,"     Mujeres: ");
 			$pdf->Write (5, sexo_patologia($id, "M"));
+			$pdf->Write (5, "%");
 			$pdf->Ln();
-			$pdf->Write (5,"Numero de pacietes que han fallecido en un periodo de 30 dias: ");
+			$pdf->Write (5,"Porcentaje de pacietes que han fallecido en un periodo de 30 dias: ");
 			$pdf->Write (5,porcentaje_complicaciones_patologia($id));
+			$pdf->Write (5, "%");
 			$pdf->Ln();
+			$pdf->Write (5, "Porcentaje de pacientes con factores de riesgo: ");
+			$pdf->Write (5, pacientes_factores_patologia($id));
+			$pdf->Write (5, "%");
+			$pdf->Ln();
+			$pdf->Write (5, "Pacientes que se han curado con un procedimiento:");
 			
+  
+
 			$pdf->Output("prueba.pdf",'F');
 
 			echo "<script language='javascript'> window.open('prueba.pdf');</script>";//paral archivo pdf generado
@@ -88,20 +100,24 @@ if(!isset($_GET['idpatologia'])){
 				<label class="form-group" id="plabel">Patologia: <?php echo $patologia['nombre']; ?></label>
 				</div>
 				<div  class="form-group">
-				<label class="form-group" id="pclabel">Porcentaje que ha presentado complicaciones: <?php echo porcentaje_complicaciones_patologia($id); ?></label>
+				<label class="form-group" id="pclabel">Porcentaje que ha presentado complicaciones: <?php echo porcentaje_complicaciones_patologia($id); ?>%</label>
 				</div>
 				<div  class="form-group">
 				<label class="form-group" id="emlabel">Edad media de los pacientes: <?php echo edad_media_pacientes_patologia($id); ?></label>
 				</div>
 				<div  class="form-group">
 				<label id="pslabel">Porcentaje de pacientes por sexo</label>
-				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, "H"); ?></label>
-				<label id="psmlabel">Mujeres:  <?php echo sexo_patologia($id, "M"); ?></label>
+				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, "H"); ?>%    </label>
+				<label id="psmlabel">     Mujeres:  <?php echo sexo_patologia($id, "M"); ?>%</label>
 								</div>
 				<div  class="form-group">
-				<label class="form-group" id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?></label>
+				<label class="form-group" id="pflabel">Porcentaje pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?>%</label>
 				</div>
 				
+				
+				
+				
+				<label id="pflabel">Porcentaje de pacientes con factores de riesgo: <?php echo pacientes_factores_patologia($id) ?>%</label>				
 				
 				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>
 				<table>
@@ -121,6 +137,14 @@ if(!isset($_GET['idpatologia'])){
 						}
 					?>
 				</table>
+				
+				
+
+				
+				
+				
+				
+				
 				
 			</div>
 				<div id="botones" class="pull-right">
