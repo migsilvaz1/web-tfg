@@ -2,6 +2,7 @@
 include "menu.php";
 include ('fpdf/fpdf.php');
 $patologias = get_all_patologia();
+$tprocedimientos = get_all_tipo_procedimiento();
 if(!isset($_GET['idpatologia'])){
 		header("Location: error.php");
 	}else{
@@ -93,14 +94,34 @@ if(!isset($_GET['idpatologia'])){
 				<label class="form-group" id="emlabel">Edad media de los pacientes: <?php echo edad_media_pacientes_patologia($id); ?></label>
 				</div>
 				<div  class="form-group">
-				<!--<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>-->
 				<label id="pslabel">Porcentaje de pacientes por sexo</label>
 				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, "H"); ?></label>
 				<label id="psmlabel">Mujeres:  <?php echo sexo_patologia($id, "M"); ?></label>
 								</div>
 				<div  class="form-group">
 				<label class="form-group" id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?></label>
-</div>
+				</div>
+				
+				
+				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>
+				<table>
+					<tr>
+						<td>Procedimiento</td>
+						<td>Pacientes curados</td>
+					</tr>
+					<?php 
+						foreach ($tprocedimientos as $tprocedimiento) {
+							 $id_tproc = $tprocedimiento['id_tipop'];
+							if(curacion_patologia_procedimiento($id, $id_tproc)!=0){ ?>
+								<tr>
+									<td><?php $procd_aux = get_by_id_tipo_procedimiento($id_tproc); echo $procd_aux['nombre']; ?></td>
+									<td><?php echo curacion_patologia_procedimiento($id, $id_tproc); ?></td>
+								</tr><?php
+							}
+						}
+					?>
+				</table>
+				
 			</div>
 				<div id="botones" class="pull-right">
 					<input id="imprimir" name="imprimir" type="submit" class="btn btn-default" value="Imprimir">
