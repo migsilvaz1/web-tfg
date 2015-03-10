@@ -10,7 +10,6 @@
 			$DB_PASS = "root";
 			$command = "\"C:\\Program Files\\MySQL\\MySQL Server 5.6\\bin\\mysql.exe\" --user=".$DB_USER.
 			" --password=".$DB_PASS." < C:\\xampp\\htdocs\\root\\docs\\$name";
-			$ret_arr = array();
 			exec($command, $ret_arr, $ret_code);
 			header("Location: inicio.php");
 	    }
