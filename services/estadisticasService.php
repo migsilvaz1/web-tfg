@@ -19,7 +19,11 @@
 		$stmt->execute();
 		$complicaciones_procedimientos = $stmt->fetch();
 		disconnect($con);
-		return ($complicaciones_procedimientos[0] * 1.0)/($total_procedimientos[0] * 1.0)*100;
+		if($total_procedimientos[0] == 0){
+			return 0;
+		}else{
+			return ($complicaciones_procedimientos[0] * 1.0)/($total_procedimientos[0] * 1.0)*100;
+		}
 	}
 	function pacientes_factores_patologia($id_patologia){
 		$con = connect();
@@ -37,7 +41,11 @@
 		$stmt->execute();
 		$pacientes_riesgo = $stmt->fetch();
 		disconnect($con);
-		return ($pacientes_riesgo[0] * 1.0)/($total_pacientes[0] * 1.0)*100;
+		if($total_pacientes[0]==0){
+			return 0;
+		}else{
+			return ($pacientes_riesgo[0] * 1.0)/($total_pacientes[0] * 1.0)*100;
+		}
 	}
 	function edad_media_pacientes_patologia($id_patologia){
 		$con = connect();
@@ -66,7 +74,11 @@
 		$stmt->execute();
 		$pacientes_sexo = $stmt->fetch();
 		disconnect($con);
-		return ($pacientes_sexo[0] * 1.0)/($total_pacientes[0] * 1.0)*100;
+		if($total_pacientes[0]==0){
+			return 0;
+		}else{
+			return ($pacientes_sexo[0] * 1.0)/($total_pacientes[0] * 1.0)*100;
+		}
 	}
 	function mortalidad_temprana_patologia($id_patologia){
 		$con = connect();

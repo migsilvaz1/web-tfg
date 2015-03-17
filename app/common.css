@@ -7,12 +7,12 @@
 	overflow-x: hidden;
 }
 .lista{
-	height: 100px;
+	max-height: 100px;
 	overflow: scroll;
 	overflow-x: hidden;
 }
 .lista-imagenes{
-	height: 300px;
+	max-height: 300px;
 	overflow: scroll;
 	overflow-x: hidden;
 }
