@@ -26,7 +26,7 @@
 		$stmt = $con->prepare('SELECT * FROM pacientes WHERE nombre LIKE :nombre');
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->execute();
-		$res = $stmt->fetch(PDO::FETCH_ASSOC);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $res;
 		disconnect($con);
 	}
@@ -36,7 +36,7 @@
 		$stmt = $con->prepare('SELECT * FROM pacientes WHERE numeroHistorial LIKE :nHistorial');
 		$stmt->bindParam(':nHistorial', $nHistorial);
 		$stmt->execute();
-		$res = $stmt->fetch(PDO::FETCH_ASSOC);
+		$res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		return $res;
 		disconnect($con);
 	}
