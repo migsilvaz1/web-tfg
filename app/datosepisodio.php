@@ -88,7 +88,7 @@
 					<div class="form-group">
 						<label id="flabel" for="fechaepisodio" class="col-sm-3 control-label">Fecha</label>
 						<div class="col-sm-9">
-							<input type="text" id="fechaepisodio" name="fechaepisodio" class="form-control" value="<?php if($id != 0){echo date("d/m/Y", strtotime($episodio['fecha']));} ?>">
+							<input type="text" id="fechaepisodio" name="fechaepisodio" class="form-control" placeholder="dd/mm/AAAA" value="<?php if($id != 0){echo $episodio['fecha'];} ?>">
 						</div>
 					</div>
 					<div class="form-group">

@@ -102,7 +102,7 @@
 					<div class="form-group">
 						<label id="fnlabel" for="fechanacimiento" class="col-sm-2 control-label">Fecha Nacimiento</label>
 						<div class="col-sm-10">
-							<input type="date" id="fechanacimiento" name="fechanacimiento" placeholder="dd/mm/aaaa" class="form-control">
+							<input type="text" id="fechanacimiento" name="fechanacimiento" placeholder="dd/mm/aaaa" class="form-control">
 						</div>
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 					<div class="form-group">
 						<label id="flabel" for="fechaepisodio" class="col-sm-2 control-label">Fecha</label>
 						<div class="col-sm-10">
-							<input type="text" id="fechaepisodio" name="fechaepisodio" class="form-control">
+							<input type="text" id="fechaepisodio" name="fechaepisodio" placeholder="dd/mm/aaaa" class="form-control">
 						</div>
 					</div>
 					<div class="form-group">
