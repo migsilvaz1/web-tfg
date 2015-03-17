@@ -1,4 +1,5 @@
 CREATE DATABASE `radiologia` CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `radiologia`;
 CREATE TABLE radiologia.radiologos (
 	id_radiologo int NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 	nombre varchar(100) NOT NULL
