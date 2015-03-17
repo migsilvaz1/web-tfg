@@ -25,7 +25,7 @@
 			return ($complicaciones_procedimientos[0] * 1.0)/($total_procedimientos[0] * 1.0)*100;
 		}
 	}
-	function pacientes_factores_patologia($id_patologia){
+	function pacientes_factores_patologia($id_patologia, $idfactor){
 		$con = connect();
 		$stmt = $con->prepare('SELECT count(*) FROM patologias INNER JOIN episodios ON patologias.id_patologia = episodios.id_patologia 
              INNER JOIN pacientes ON episodios.id_paciente = pacientes.id_paciente WHERE 
@@ -36,8 +36,9 @@
 		$stmt = $con->prepare('SELECT count(*) FROM patologias INNER JOIN episodios ON patologias.id_patologia = episodios.id_patologia 
              INNER JOIN pacientes ON episodios.id_paciente = pacientes.id_paciente INNER JOIN 
              relpacientefactor ON pacientes.id_paciente = relpacientefactor.id_paciente WHERE 
-             patologias.id_patologia = :id');
-		$stmt->bindParam(':id', $id_patologia);
+             patologias.id_patologia = :id_p AND relpacientefactor.id_factor = :id_f');
+		$stmt->bindParam(':id_p', $id_patologia);
+		$stmt->bindParam(':id_f', $idfactor);
 		$stmt->execute();
 		$pacientes_riesgo = $stmt->fetch();
 		disconnect($con);
