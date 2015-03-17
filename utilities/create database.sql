@@ -10,9 +10,7 @@ CREATE TABLE radiologia.pacientes (
 	nombre varchar(100) NOT NULL, 
 	fechaNacimiento DATE NOT NULL, 
 	sexo char (1), 
-	enfermedadesConocidas varchar(500), 
-	edad int, 
-	edadConsulta int
+	enfermedadesConocidas varchar(500)
 );
 
 CREATE TABLE radiologia.factoresDeRiesgo (
@@ -49,6 +47,7 @@ CREATE TABLE radiologia.episodios (
 	id_episodio int NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 	nombre varchar(100) NOT NULL,
 	fecha date NOT NULL,
+	edadConsulta int NOT NULL,
 	id_paciente int NOT NULL, 
 	id_servicio int NOT NULL, 
 	id_centro int NOT NULL, 
