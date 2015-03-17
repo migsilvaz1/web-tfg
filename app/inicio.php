@@ -31,6 +31,7 @@
 		$fecha_nac =date_format(date_create_from_format("d/m/Y", $_REQUEST['fechanacimiento']), "Y-m-d");
 		$nombre_episodio = $_REQUEST['nombreepisodio'];
 		$fecha_episodio = date_format(date_create_from_format("d/m/Y", $_REQUEST['fechaepisodio']), "Y-m-d");
+		$edadConsulta = calcular_edad($fecha_nac);
 		$id_servicio = $_REQUEST['idservicio'];
 		$id_patologia = $_REQUEST['idpatologia'];
 		$id_tipop = $_REQUEST['idtipop'];
@@ -45,15 +46,16 @@
 			}
 		}
 		if($existe){
-			create_episodio($nombre_episodio, $fecha_episodio, $paciente_encontrado['id_paciente'], 
+			create_episodio($nombre_episodio, $fecha_episodio, $edadConsulta,$paciente_encontrado['id_paciente'], 
 			$id_servicio, 1, $id_patologia);
 			create_procedimiento($id_tipop, null);
 		}else{
 			$id_paciente = create_paciente($num_historial, $nombre, $fecha_nac, null, null, null, null);
-			$id_episodio = create_episodio($nombre_episodio, $fecha_episodio, $id_paciente, $id_servicio, 1, $id_patologia);
+			$id_episodio = create_episodio($nombre_episodio, $fecha_episodio, $edadConsulta, $id_paciente, $id_servicio, 1, $id_patologia);
 			$id_procedimiento = create_procedimiento($id_tipop, null);
 			create_episodio_procedimiento($id_episodio, $id_procedimiento);
 		}
+		header("Location: inicio.php");
 		$error="false";
 	}
 
