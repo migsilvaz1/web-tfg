@@ -3,10 +3,11 @@ include "menu.php";
 $patologias = get_all_patologia();
 ?>
 <head>
-	<title>Inicio</title>
+	<title>Estadisticas</title>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
-	<div id="inicio" class="container" style="margin-top: 60px;">
+	<div id="inicio" class="container">
 
 		<!-- Barra lateral -->
 
@@ -39,13 +40,20 @@ $patologias = get_all_patologia();
 					<label class="form-group"  id="emlabel">Edad media de los pacientes: </label>
 				</div>
 				<div class="form-group">
-					<!--<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>-->
-						<label  id="pslabel">Porcentaje de pacientes por sexo</label>
-						<label id="pshlabel">Hombres: </label><label id="psmlabel">Mujeres: </label>
-					</div>
-					<div class="form-group">
-						<label class="form-group"  id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: </label>
-					</div>
+
+					<label  id="pslabel">Porcentaje de pacientes por sexo</label>
+					<label id="pshlabel">Hombres: </label><label id="psmlabel">Mujeres: </label>
 				</div>
+				<div class="form-group">
+					<label class="form-group"  id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: </label>
+				</div>
+				
+				<div class="form-group">
+				<label id="pflabel">Porcentaje de pacientes con factores de riesgo: </label>	
+				</div>
+						<div class="form-group">
+				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>
+</div>
 			</div>
+		</div>
 </body>

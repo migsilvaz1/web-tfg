@@ -6,13 +6,57 @@ if(!isset($_GET['idradiologo'])){
 		header("Location: error.php");
 	}else if ($_GET['idradiologo']==0) {
 			$id = 0;
+			$pruebas = get_all_pdiagnostica();
+			$contpd = 0;
+			$contep = 0;
+			foreach ($pruebas as $prueba) {
+			$contpd++;
+			}
+			$episodios = get_all_episodio();
+			foreach ($episodios as $episodio) {
+				$contep++;
+				
+			}
+			
+			
+		if(isset($_POST['imprimir'])){
+			$pdf = new FPDF();
+
+			$pdf->AddPage();
+			
+			/* seleccionamos el tipo, estilo y tamaño de la letra a utilizar */
+
+			$pdf->SetFont('Helvetica', 'B', 14);
+
+			$pdf->Write (7,"ESTADISTICAS: ");
+						$pdf->Ln();
+						$pdf->Ln();
+			
+			$pdf->Write (5,"Numero de pruebas realizadas: ");
+			$pdf->Write(5, $contpd);
+			$pdf->Ln();
+			$pdf->Write (5,"Numero de episodios atendidos: ");
+			$pdf->Write(5, $contep);
+			$pdf->Ln();
+
+			
+  
+
+			$pdf->Output("prueba.pdf",'F');
+
+			echo "<script language='javascript'> window.open('prueba.pdf');</script>";//paral archivo pdf generado
+}
+		
+	
+
 
 ?>
 <head>
 	<title>Estadisticas</title>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
-	<div id="inicio" class="container" style="margin-top: 60px;">
+	<div id="inicio" class="container">
 
 		<!-- Barra lateral -->
 
@@ -38,14 +82,14 @@ if(!isset($_GET['idradiologo'])){
 		<div class="jumbotron col-md-7">
 			<form name='pdf' method='post' action='estadisticasgenerales.php?idradiologo=<?php echo $id; ?>'>
 				<div id="grupo1">
-					<h3 id="titulo1"> Datos del radiólgo</h3>
-					<div class="form-group">
-						<label class="form-group"  id="nlabel">Nombre: </label>
-					</div>
+					<h3 id="titulo1"> Datos totales</h3>
 					<div  class="form-group">
-						<label class="form-group"  id="nelabel">Numero de episodios atendidos: </label>
+						<label class="form-group"  id="nelabel">Numero de pruebas realizadas: <?php echo $contpd; ?></label>
 					</div>
-
+					
+					<div  class="form-group">
+						<label class="form-group"  id="nealabel">Numero de episodios atendidos: <?php echo $contep; ?></label>
+					</div>
 				</div>
 				<div id="botones" class="pull-right">
 					<input id="imprimir" name="imprimir" type="submit" class="btn btn-default" value="Imprimir">
@@ -55,13 +99,47 @@ if(!isset($_GET['idradiologo'])){
 }else{
 $id = $_GET['idradiologo'];
 $radiologo = get_by_id_radiologo($id);
+$pruebas = get_all_pdiagnostica();
+$cont = 0;
+foreach ($pruebas as $prueba) {
+	$id_aux = $prueba['id_radiologo'];
+	if ($id_aux == $id){
+		$cont++;
+	}}
+			if(isset($_POST['imprimir'])){
+			$pdf = new FPDF();
+
+			$pdf->AddPage();
+			
+			/* seleccionamos el tipo, estilo y tamaño de la letra a utilizar */
+
+			$pdf->SetFont('Helvetica', 'B', 14);
+
+			$pdf->Write (7,"ESTADISTICAS: ");
+			$pdf->Write (7,$radiologo[nombre]);
+						$pdf->Ln();
+						$pdf->Ln();
+			
+			$pdf->Write (5,"Numero de pruebas realizadas: ");
+			$pdf->Write(5, $cont);
+			$pdf->Ln();
+
+			
+  
+
+			$pdf->Output("prueba.pdf",'F');
+
+			echo "<script language='javascript'> window.open('prueba.pdf');</script>";//paral archivo pdf generado
+	
+}
 ?>
 
 <head>
 	<title>Estadisticas</title>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
-	<div id="inicio" class="container" style="margin-top: 60px;">
+	<div id="inicio" class="container">
 
 		<!-- Barra lateral -->
 
@@ -89,11 +167,15 @@ $radiologo = get_by_id_radiologo($id);
 				<div id="grupo1">
 					<h3 id="titulo1"> Datos del radiólgo</h3>
 					<div class="form-group">
-						<label class="form-group"  id="nlabel">Nombre: </label>
+						<label class="form-group"  id="nlabel">Nombre: <?php echo $radiologo['nombre']; ?></label>
 					</div>
 					<div  class="form-group">
-						<label class="form-group"  id="nelabel">Numero de episodios atendidos: </label>
+						<label class="form-group"  id="nelabel">Numero de pruebas realizadas: <?php echo $cont; ?></label>
 					</div>
+					
+					<!--<div  class="form-group">
+						<label class="form-group"  id="nealabel">Numero de pruebas realizadas por año: </label>
+					</div>-->
 
 				</div>
 				<div id="botones" class="pull-right">

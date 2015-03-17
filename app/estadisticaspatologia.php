@@ -1,6 +1,7 @@
 <?php
 include "menu.php";
 include ('fpdf/fpdf.php');
+//include_once('PDF.php');
 $patologias = get_all_patologia();
 $tprocedimientos = get_all_tipo_procedimiento();
 $factores = get_all_factor();
@@ -20,7 +21,7 @@ if(!isset($_GET['idpatologia'])){
 			$pdf = new FPDF();
 
 			$pdf->AddPage();
-
+			
 			/* seleccionamos el tipo, estilo y tamaño de la letra a utilizar */
 
 			$pdf->SetFont('Helvetica', 'B', 14);
@@ -67,9 +68,10 @@ if(!isset($_GET['idpatologia'])){
 ?>
 <head>
 	<title>Estadisticas</title>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
-	<div id="inicio" class="container" style="margin-top: 60px;">
+	<div id="inicio" class="container">
 
 		<!-- Barra lateral -->
 
@@ -116,11 +118,11 @@ if(!isset($_GET['idpatologia'])){
 				
 				
 				
-				
+						<div class="form-group">
 				<label id="pflabel">Porcentaje de pacientes con factores de riesgo: <?php echo pacientes_factores_patologia($id) ?>%</label>				
-				
+				</div>
 				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>
-				<table>
+				<table class="table table-striped">
 					<tr>
 						<td>Procedimiento</td>
 						<td>Pacientes curados</td>

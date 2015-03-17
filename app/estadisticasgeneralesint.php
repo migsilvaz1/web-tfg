@@ -4,9 +4,10 @@ $radiologos = get_all_radiologo();
 ?>
 <head>
 	<title>Estadisticas</title>
+	<LINK REL=StyleSheet HREF="common.css" TYPE="text/css" MEDIA=screen>
 </head>
 <body>
-	<div id="inicio" class="container" style="margin-top: 60px;">
+	<div id="inicio" class="container">
 
 		<!-- Barra lateral -->
 
