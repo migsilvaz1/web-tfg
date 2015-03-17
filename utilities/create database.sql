@@ -160,7 +160,7 @@ CREATE TABLE radiologia.relEpisodioPdiagnostica (
 
 -- Insert de ejemplo
 INSERT INTO radiologia.radiologos VALUES(NULL,'john Doe');
-INSERT INTO radiologia.pacientes VALUES(NULL,'28AS','Mr james','2014-01-01','H','Ninguna enfermedad',32,32);
+INSERT INTO radiologia.pacientes VALUES(NULL,'28AS','Mr james','2014-01-01','H','Ninguna enfermedad');
 INSERT INTO radiologia.materiales VALUES(NULL,'Ejemplo Material');
 INSERT INTO radiologia.servicios VALUES(NULL,'Ejemplo Servicio');
 INSERT INTO radiologia.centros VALUES(NULL,'Ejemplo Centro');
@@ -175,7 +175,7 @@ SET @last_id_paciente := (SELECT DISTINCT LAST_INSERT_ID() FROM radiologia.pacie
 SET @last_id_servicio := (SELECT DISTINCT LAST_INSERT_ID() FROM radiologia.servicios);
 SET @last_id_centro := (SELECT DISTINCT LAST_INSERT_ID() FROM radiologia.centros);
 SET @last_id_patologia := (SELECT DISTINCT LAST_INSERT_ID() FROM radiologia.patologias);
-INSERT INTO radiologia.episodios VALUES(NULL,'Ejemplo Episodio','2014-01-01',@last_id_paciente,@last_id_servicio,@last_id_centro, @last_id_patologia);
+INSERT INTO radiologia.episodios VALUES(NULL,'Ejemplo Episodio','2014-01-01',32,@last_id_paciente,@last_id_servicio,@last_id_centro, @last_id_patologia);
 
 -- DIAGNOSTICO
 SET @last_id_episodio := (SELECT DISTINCT LAST_INSERT_ID() FROM radiologia.episodios);
