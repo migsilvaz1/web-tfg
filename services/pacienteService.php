@@ -40,33 +40,29 @@
 		return $res;
 		disconnect($con);
 	}
-	function create_paciente($numeroHistorial, $nombre, $fechaNacimiento, $sexo, $enfermedadesConocidas, $edad, $edadConsulta){
+	function create_paciente($numeroHistorial, $nombre, $fechaNacimiento, $sexo, $enfermedadesConocidas){
 		$con = connect();
-		$stmt = $con->prepare('INSERT INTO pacientes VALUES(NULL,:numeroHistorial,:nombre,:fechaNacimiento,:sexo,:enfermedadesConocidas,:edad,:edadConsulta)');
+		$stmt = $con->prepare('INSERT INTO pacientes VALUES(NULL,:numeroHistorial,:nombre,:fechaNacimiento,:sexo,:enfermedadesConocidas)');
 		$stmt->bindParam(':numeroHistorial', $numeroHistorial);
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->bindParam(':fechaNacimiento', $fechaNacimiento);
 		$stmt->bindParam(':sexo', $sexo);
 		$stmt->bindParam(':enfermedadesConocidas', $enfermedadesConocidas);
-		$stmt->bindParam(':edad', $edad);
-		$stmt->bindParam(':edadConsulta', $edadConsulta);
 		$stmt->execute();
 		$lastInsertId = $con->lastInsertId();
 		disconnect($con);
 		return $lastInsertId;
 	}
-	function update_paciente($id, $numeroHistorial, $nombre, $fechaNacimiento, $sexo, $enfermedadesConocidas, $edad, $edadConsulta){
+	function update_paciente($id, $numeroHistorial, $nombre, $fechaNacimiento, $sexo, $enfermedadesConocidas){
 		$con = connect();
 		$stmt = $con->prepare('UPDATE pacientes SET numeroHistorial = :numeroHistorial, nombre = :nombre, fechaNacimiento = :fechaNacimiento,
-		sexo = :sexo, enfermedadesConocidas = :enfermedadesConocidas, edad = :edad, edadConsulta = :edadConsulta WHERE id_paciente = :id');
+		sexo = :sexo, enfermedadesConocidas = :enfermedadesConocidas WHERE id_paciente = :id');
 		$stmt->bindParam(':id', $id);
 		$stmt->bindParam(':numeroHistorial', $numeroHistorial);
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->bindParam(':fechaNacimiento', $fechaNacimiento);
 		$stmt->bindParam(':sexo', $sexo);
 		$stmt->bindParam(':enfermedadesConocidas', $enfermedadesConocidas);
-		$stmt->bindParam(':edad', $edad);
-		$stmt->bindParam(':edadConsulta', $edadConsulta);
 		$stmt->execute();
 		disconnect($con);
 	}

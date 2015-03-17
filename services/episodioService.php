@@ -30,11 +30,12 @@
 		return $res;
 		disconnect($con);
 	}
-	function create_episodio($nombre, $fecha, $idPaciente, $idServicio, $idCentro, $idPatologia){
+	function create_episodio($nombre, $fecha, $edadConsulta, $idPaciente, $idServicio, $idCentro, $idPatologia){
 		$con = connect();
-		$stmt = $con->prepare('INSERT INTO episodios VALUES(NULL,:nombre,:fecha,:idPaciente,:idServicio,:idCentro,:idPatologia)');
+		$stmt = $con->prepare('INSERT INTO episodios VALUES(NULL,:nombre,:fecha,:edadConsulta,:idPaciente,:idServicio,:idCentro,:idPatologia)');
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->bindParam(':fecha', $fecha);
+		$stmt->bindParam(':edadConsulta', $edadConsulta);
 		$stmt->bindParam(':idPaciente', $idPaciente);
 		$stmt->bindParam(':idServicio', $idServicio);
 		$stmt->bindParam(':idCentro', $idCentro);
@@ -44,13 +45,14 @@
 		disconnect($con);
 		return $lastInsertId;
 	}
-	function update_episodio($id, $nombre, $fecha, $idPaciente, $idServicio, $idCentro, $idPatologia){
+	function update_episodio($id, $nombre, $fecha, $edadConsulta, $idPaciente, $idServicio, $idCentro, $idPatologia){
 		$con = connect();
-		$stmt = $con->prepare('UPDATE episodios SET nombre = :nombre, fecha= :fecha, id_paciente = :idPaciente, 
+		$stmt = $con->prepare('UPDATE episodios SET nombre = :nombre, fecha= :fecha, edadConsulta = :edadConsulta, id_paciente = :idPaciente, 
 		id_servicio = :idServicio, id_centro = :idCentro, id_patologia = :idPatologia WHERE id_episodio = :id');
 		$stmt->bindParam(':id', $id);
 		$stmt->bindParam(':nombre', $nombre);
 		$stmt->bindParam(':fecha', $fecha);
+		$stmt->bindParam(':edadConsulta', $edadConsulta);
 		$stmt->bindParam(':idPaciente', $idPaciente);
 		$stmt->bindParam(':idServicio', $idServicio);
 		$stmt->bindParam(':idCentro', $idCentro);
