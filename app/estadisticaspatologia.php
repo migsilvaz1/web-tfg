@@ -113,7 +113,7 @@ if(!isset($_GET['idpatologia'])){
 				<label id="psmlabel">     Mujeres:  <?php echo sexo_patologia($id, "M"); ?>%</label>
 								</div>
 				<div  class="form-group">
-				<label class="form-group" id="pflabel">Porcentaje pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?>%</label>
+				<label class="form-group" id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?></label>
 				</div>
 				
 				
