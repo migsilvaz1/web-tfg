@@ -78,7 +78,7 @@
 					<div class="form-group">
 						<label id="fnlabel" for="fechanacimiento" class="col-sm-3 control-label">Fecha nacimiento</label>
 						<div class="col-sm-9">
-							<input type="text" class="form-control" id="fechanacimiento" placeholder="dd/mm/aaaa" name="fechanacimiento" value= "<?php echo $paciente['fechaNacimiento']; ?>">
+							<input type="text" class="form-control" id="fechanacimiento" placeholder="dd/mm/aaaa" name="fechanacimiento" value= "<?php echo date("d/m/Y", strtotime($paciente['fechaNacimiento'])); ?>">
 																																			
 						</div>
 					</div>

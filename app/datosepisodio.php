@@ -19,7 +19,9 @@
 				$patologia = $_POST['patologiaepisodio'];
 				$centro = $_POST['centroepisodio'];
 				if($id == 0){
-					create_episodio($nombre, $fecha, $id_paciente, $servicio, $centro, $patologia);
+					$paciente = get_by_id_paciente($id_paciente);
+					$edadConsulta = calcular_edad($paciente['fechaNacimiento']);
+					create_episodio($nombre, $fecha, $edadConsulta, $id_paciente, $servicio, $centro, $patologia);
 					$action = true;
 				}else{
 					update_episodio($id, $nombre, $fecha, $id_paciente, $servicio, $centro, $patologia);
@@ -88,7 +90,7 @@
 					<div class="form-group">
 						<label id="flabel" for="fechaepisodio" class="col-sm-3 control-label">Fecha</label>
 						<div class="col-sm-9">
-							<input type="text" id="fechaepisodio" name="fechaepisodio" class="form-control" placeholder="dd/mm/AAAA" value="<?php if($id != 0){echo $episodio['fecha'];} ?>">
+							<input type="text" id="fechaepisodio" name="fechaepisodio" class="form-control" placeholder="dd/mm/aaaa" value="<?php if($id != 0){echo date("d/m/Y", strtotime($episodio['fecha']));} ?>">
 						</div>
 					</div>
 					<div class="form-group">
