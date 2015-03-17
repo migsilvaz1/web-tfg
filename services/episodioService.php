@@ -97,9 +97,12 @@
 		disconnect($con);
 	}
 	function calcular_edad($fecha){
-    	$dias = explode("-", $fecha, 3);
-    	$dias = mktime(0,0,0,$dias[1],$dias[0],$dias[2]);
-    	$edad = (int)((time()-$dias)/31556926 );
-    	return $edad;
+    	list($ano,$mes,$dia) = explode("-",$fecha);
+    	$ano_diferencia  = date("Y") - $ano;
+    	$mes_diferencia = date("m") - $mes;
+	    $dia_diferencia   = date("d") - $dia;
+	    if ($dia_diferencia < 0 || $mes_diferencia < 0)
+	        $ano_diferencia--;
+	    return $ano_diferencia;
 	}
 ?>

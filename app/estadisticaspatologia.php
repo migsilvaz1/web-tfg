@@ -99,7 +99,7 @@ if(!isset($_GET['idpatologia'])){
 				</h3>
 								<div class="form-group">
 
-				<label class="form-group" id="plabel">Patologia: <?php echo $patologia['nombre']; ?></label>
+				<label class="form-group" id="plabel">Patologia: </label><?php echo $patologia['nombre']; ?>
 				</div>
 				<div  class="form-group">
 				<label class="form-group" id="pclabel">Porcentaje que ha presentado complicaciones: <?php echo porcentaje_complicaciones_patologia($id); ?>%</label>

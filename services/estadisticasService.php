@@ -49,9 +49,7 @@
 	}
 	function edad_media_pacientes_patologia($id_patologia){
 		$con = connect();
-		$stmt = $con->prepare('SELECT AVG(pacientes.edad) FROM patologias INNER JOIN episodios ON patologias.id_patologia = 
-             episodios.id_patologia INNER JOIN pacientes ON episodios.id_paciente = pacientes.id_paciente 
-             WHERE patologias.id_patologia = :id');
+		$stmt = $con->prepare('SELECT AVG(episodios.edadConsulta) FROM episodios WHERE episodios.id_patologia = :id');
 		$stmt->bindParam(':id', $id_patologia);
 		$stmt->execute();
 		$media = $stmt->fetch();
