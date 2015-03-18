@@ -24,7 +24,6 @@ if(!isset($_GET['idradiologo'])){
 
 			$pdf->AddPage();
 			
-			/* seleccionamos el tipo, estilo y tamaño de la letra a utilizar */
 
 			$pdf->SetFont('Helvetica', 'B', 14);
 
@@ -42,9 +41,9 @@ if(!isset($_GET['idradiologo'])){
 			
   
 
-			$pdf->Output("prueba.pdf",'F');
+			$pdf->Output("estadisticas.pdf",'F');
 
-			echo "<script language='javascript'> window.open('prueba.pdf');</script>";//paral archivo pdf generado
+			echo "<script language='javascript'> window.open('estadisticas.pdf');</script>";
 }
 		
 	

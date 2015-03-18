@@ -15,13 +15,11 @@ if(!isset($_GET['idpatologia'])){
 
 
 
-		/* tenemos que generar una instancia de la clase */
 		if(isset($_POST['imprimir'])){
 			$pdf = new FPDF();
 
 			$pdf->AddPage();
 			
-			/* seleccionamos el tipo, estilo y tamaño de la letra a utilizar */
 
 			$pdf->SetFont('Helvetica', 'B', 14);
 
@@ -29,37 +27,65 @@ if(!isset($_GET['idpatologia'])){
 			$pdf->Write (7,$patologia['nombre']);
 			$pdf->Ln();
 			$pdf->Ln();
+						$pdf->Ln();
 			$pdf->Write (5,"Porcentaje que ha presentado complicaciones: ");
 			$pdf->Write (5,porcentaje_complicaciones_patologia($id));
 			$pdf->Write (5, "%");
+						$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Write (5,"Edad media de los pacientes: ");
 			$pdf->Write (5,edad_media_pacientes_patologia($id));
+						$pdf->Ln();
 			$pdf->Ln();
 			$pdf->Write (5,"Porcentaje de pacientes por sexo: ");
-			$pdf->Ln();
+						$pdf->Ln();
 			$pdf->Write (5,"Hombres: ");
 			$pdf->Write (5, sexo_patologia($id, "H"));
 			$pdf->Write (5, "%");
 			$pdf->Write (5,"     Mujeres: ");
 			$pdf->Write (5, sexo_patologia($id, "M"));
-			$pdf->Write (5, "%");
+			$pdf->Write (5, "%");			
 			$pdf->Ln();
-			$pdf->Write (5,"Porcentaje de pacietes que han fallecido en un periodo de 30 dias: ");
-			$pdf->Write (5,porcentaje_complicaciones_patologia($id));
-			$pdf->Write (5, "%");
 			$pdf->Ln();
-			$pdf->Write (5, "Porcentaje de pacientes con factores de riesgo: ");
-			$pdf->Write (5, pacientes_factores_patologia($id));
-			$pdf->Write (5, "%");
+			$pdf->Write (5,"Numero de pacietes que han fallecido en un periodo de 30 dias: ");
+			$pdf->Write (5,mortalidad_temprana_patologia($id));
+			$pdf->Ln();
+						$pdf->Ln();
+			$pdf->Write (5, "Porcentajes de pacientes con factores de riesgo: ");
+			$pdf->Ln();
+			foreach ($factores as $factor) {
+					
+							if(pacientes_factores_patologia($id, $factor['id_factor'])!=0){ 
+								
+									 $pdf->Write (5, $factor['nombre']); 
+								$pdf->Write(5, ":   ");
+									 $pdf->Write (5, pacientes_factores_patologia($id, $factor['id_factor']));
+								$pdf->Write(5,"%");
+								$pdf->Ln();
+							}
+						}
+
 			$pdf->Ln();
 			$pdf->Write (5, "Pacientes que se han curado con un procedimiento:");
 			
+			$pdf->Ln();
+						foreach ($tprocedimientos as $tprocedimiento) {
+							if(curacion_patologia_procedimiento($id, $tprocedimiento['id_tipop'])!=0){
+								
+									 $pdf->Write (5, $tprocedimiento['nombre'] ); 
+								$pdf->Write(5, ":   ");
+									 $pdf->Write (5, curacion_patologia_procedimiento($id, $tprocedimiento['id_tipop']));
+								$pdf->Ln();
+							}
+						}
+
+			$pdf->Ln();
+			
   
 
-			$pdf->Output("prueba.pdf",'F');
+			$pdf->Output("estadisticas.pdf",'F');
 
-			echo "<script language='javascript'> window.open('prueba.pdf');</script>";//paral archivo pdf generado
+			echo "<script language='javascript'> window.open('estadisticas.pdf');</script>";
 }
 
 
@@ -133,10 +159,8 @@ if(!isset($_GET['idpatologia'])){
 								<tr>
 									<td><?php echo $factor['nombre']; ?></td>
 									<td><?php echo pacientes_factores_patologia($id, $factor['id_factor']); ?></td>
-								</tr><?php
-							}
-						}
-					?>
+								</tr><?php }
+								} ?>
 				</table>				
 				</div>
 				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>
@@ -147,14 +171,13 @@ if(!isset($_GET['idpatologia'])){
 					</tr>
 					<?php 
 						foreach ($tprocedimientos as $tprocedimiento) {
-							 $id_tproc = $tprocedimiento['id_tipop'];
-							if(curacion_patologia_procedimiento($id, $id_tproc)!=0){ ?>
+							if(curacion_patologia_procedimiento($id, $tprocedimiento['id_tipop'])!=0){ ?>
 								<tr>
-									<td><?php $procd_aux = get_by_id_tipo_procedimiento($id_tproc); echo $procd_aux['nombre']; ?></td>
-									<td><?php echo curacion_patologia_procedimiento($id, $id_tproc); ?></td>
+									<td><?php echo $tprocedimiento['nombre']; ?></td>
+									<td><?php echo curacion_patologia_procedimiento($id, $tprocedimiento['id_tipop']); ?></td>
 								</tr><?php
-							}
-						}
+								}
+								}
 					?>
 				</table>
 				
