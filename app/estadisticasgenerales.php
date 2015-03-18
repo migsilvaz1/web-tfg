@@ -84,11 +84,11 @@ if(!isset($_GET['idradiologo'])){
 				<div id="grupo1">
 					<h3 id="titulo1"> Datos totales</h3>
 					<div  class="form-group">
-						<label class="form-group"  id="nelabel">Numero de pruebas realizadas: <?php echo $contpd; ?></label>
+						<label class="form-group"  id="nelabel">Numero de pruebas realizadas: </label> <?php echo $contpd; ?>
 					</div>
 					
 					<div  class="form-group">
-						<label class="form-group"  id="nealabel">Numero de episodios atendidos: <?php echo $contep; ?></label>
+						<label class="form-group"  id="nealabel">Numero de episodios atendidos: </label> <?php echo $contep; ?>
 					</div>
 				</div>
 				<div id="botones" class="pull-right">
@@ -167,15 +167,12 @@ foreach ($pruebas as $prueba) {
 				<div id="grupo1">
 					<h3 id="titulo1"> Datos del radiólgo</h3>
 					<div class="form-group">
-						<label class="form-group"  id="nlabel">Nombre: <?php echo $radiologo['nombre']; ?></label>
+						<label class="form-group"  id="nlabel">Nombre: </label> <?php echo $radiologo['nombre']; ?>
 					</div>
 					<div  class="form-group">
-						<label class="form-group"  id="nelabel">Numero de pruebas realizadas: <?php echo $cont; ?></label>
+						<label class="form-group"  id="nelabel">Numero de pruebas realizadas: </label> <?php echo $cont; ?>
 					</div>
-					
-					<!--<div  class="form-group">
-						<label class="form-group"  id="nealabel">Numero de pruebas realizadas por año: </label>
-					</div>-->
+
 
 				</div>
 				<div id="botones" class="pull-right">

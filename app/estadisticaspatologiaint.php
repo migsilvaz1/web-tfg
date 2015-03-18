@@ -42,14 +42,16 @@ $patologias = get_all_patologia();
 				<div class="form-group">
 
 					<label  id="pslabel">Porcentaje de pacientes por sexo</label>
-					<label id="pshlabel">Hombres: </label><label id="psmlabel">Mujeres: </label>
+					<ul class"list-inline">
+					<li>Hombres: </li><li>Mujeres: </li> 
+				</ul>
 				</div>
 				<div class="form-group">
 					<label class="form-group"  id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: </label>
 				</div>
 				
 				<div class="form-group">
-				<label id="pflabel">Porcentaje de pacientes con factores de riesgo: </label>	
+				<label id="pflabel">Porcentajes de pacientes con factores de riesgo: </label>	
 				</div>
 						<div class="form-group">
 				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>

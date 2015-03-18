@@ -15,7 +15,6 @@ if(!isset($_GET['idpatologia'])){
 
 
 
-
 		/* tenemos que generar una instancia de la clase */
 		if(isset($_POST['imprimir'])){
 			$pdf = new FPDF();
@@ -102,24 +101,43 @@ if(!isset($_GET['idpatologia'])){
 				<label class="form-group" id="plabel">Patologia: </label><?php echo $patologia['nombre']; ?>
 				</div>
 				<div  class="form-group">
-				<label class="form-group" id="pclabel">Porcentaje que ha presentado complicaciones: <?php echo porcentaje_complicaciones_patologia($id); ?>%</label>
+				<label class="form-group" id="pclabel">Porcentaje que ha presentado complicaciones: </label> <?php echo porcentaje_complicaciones_patologia($id); ?>%
 				</div>
 				<div  class="form-group">
-				<label class="form-group" id="emlabel">Edad media de los pacientes: <?php echo edad_media_pacientes_patologia($id); ?></label>
+				<label class="form-group" id="emlabel">Edad media de los pacientes: </label> <?php echo edad_media_pacientes_patologia($id); ?>
 				</div>
 				<div  class="form-group">
-				<label id="pslabel">Porcentaje de pacientes por sexo</label>
-				<label id="pshlabel">Hombres: <?php echo sexo_patologia($id, "H"); ?>%    </label>
-				<label id="psmlabel">     Mujeres:  <?php echo sexo_patologia($id, "M"); ?>%</label>
-								</div>
+				<label id="pslabel">Porcentaje de pacientes por sexo:</label>
+				<ul class"list-inline">
+					<li>Hombres: <?php echo sexo_patologia($id, "H"); ?>% </li><li>Mujeres: <?php echo sexo_patologia($id, "M"); ?>%</li> 
+				</ul>
+			</div>
+								
 				<div  class="form-group">
-				<label class="form-group" id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: <?php echo mortalidad_temprana_patologia($id); ?></label>
+				<label class="form-group" id="pflabel">Numero de pacietes que han fallecido en un periodo de 30 dias: </label> <?php echo mortalidad_temprana_patologia($id); ?>
 				</div>
 				
 				
 				
 						<div class="form-group">
-				<label id="pflabel">Porcentaje de pacientes con factores de riesgo: <?php echo pacientes_factores_patologia($id) ?>%</label>				
+				<label id="pflabel">Porcentajes de pacientes con factores de riesgo: </label>
+				<table class="table table-striped">
+					<tr>
+						<td>Factor de riesgo</td>
+						<td>Porcentaje depacientes</td>
+					</tr>
+					<?php
+						foreach ($factores as $factor) {
+					
+							if(pacientes_factores_patologia($id, $factor['id_factor'])!=0){ ?>
+								<tr>
+									<td><?php echo $factor['nombre']; ?></td>
+									<td><?php echo pacientes_factores_patologia($id, $factor['id_factor']); ?></td>
+								</tr><?php
+							}
+						}
+					?>
+				</table>				
 				</div>
 				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>
 				<table class="table table-striped">
