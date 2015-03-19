@@ -158,7 +158,7 @@ if(!isset($_GET['idpatologia'])){
 				<table class="table table-striped">
 					<tr>
 						<td>Factor de riesgo</td>
-						<td>Porcentaje depacientes</td>
+						<td>Porcentaje de pacientes</td>
 					</tr>
 					<?php
 						foreach ($factores as $factor) {
