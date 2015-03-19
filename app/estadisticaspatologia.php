@@ -1,10 +1,18 @@
 <?php
 include "menu.php";
 include ('fpdf/fpdf.php');
-//include_once('PDF.php');
+include('graphs.inc.php');
 $patologias = get_all_patologia();
 $tprocedimientos = get_all_tipo_procedimiento();
 $factores = get_all_factor();
+				$graph = new BAR_GRAPH("hBar");
+				$values = "";
+				$labels = "";
+				$check = 0;
+				$graph2 = new BAR_GRAPH("hBar");
+				$values2 = "";
+				$labels2 = "";
+				$check2 = 0;
 if(!isset($_GET['idpatologia'])){
 		header("Location: error.php");
 	}else{
@@ -161,7 +169,47 @@ if(!isset($_GET['idpatologia'])){
 									<td><?php echo pacientes_factores_patologia($id, $factor['id_factor']); ?></td>
 								</tr><?php }
 								} ?>
-				</table>				
+				</table>
+				<?php
+
+				foreach ($factores as $factor) {
+					
+							if(pacientes_factores_patologia($id, $factor['id_factor'])!=0){ 
+								if($check==0){
+									 $labels = $factor['nombre']; 
+									 $values = pacientes_factores_patologia($id, $factor['id_factor']); 
+									 $check = 1;
+								}else{
+									$labels .= ",";
+									$labels .= $factor['nombre']; 
+									 $values .= ",";
+									 $values .= pacientes_factores_patologia($id, $factor['id_factor']); 
+								}
+								
+								} }
+				
+				$graph->values = $values;
+				$graph->labels=$labels;
+				$graph->showValues = 2;
+$graph->barWidth = 20;
+$graph->barLength = 1.0;
+$graph->labelSize = 12;
+$graph->absValuesSize = 12;
+$graph->percValuesSize = 12;
+$graph->graphPadding = 10;
+$graph->graphBGColor = "#ABCDEF";
+$graph->graphBorder = "1px solid blue";
+$graph->barColors = "#A0C0F0";
+$graph->barBGColor = "#E0F0FF";
+$graph->barBorder = "2px outset white";
+$graph->labelColor = "#000000";
+$graph->labelBGColor = "#C0E0FF";
+$graph->labelBorder = "2px groove white";
+$graph->absValuesColor = "#000000";
+$graph->absValuesBGColor = "#FFFFFF";
+$graph->absValuesBorder = "2px groove white";
+echo $graph->create();
+								?>
 				</div>
 				<label id="pculabel">Pacientes que se han curado con un procedimiento: </label>
 				<table class="table table-striped">
@@ -181,7 +229,44 @@ if(!isset($_GET['idpatologia'])){
 					?>
 				</table>
 				
-				
+				<?php 
+						foreach ($tprocedimientos as $tprocedimiento) {
+							if(curacion_patologia_procedimiento($id, $tprocedimiento['id_tipop'])!=0){ 
+								if($check2==0){
+									 $labels2 = $tprocedimiento['nombre']; 
+									 $values2 = curacion_patologia_procedimiento($id, $tprocedimiento['id_tipop']); 
+									 $check2=1;
+								}else{
+									$labels2 .=",";
+									$labels2 .=$tprocedimiento['nombre']; 
+									$values2 .=",";
+									$values2 .= curacion_patologia_procedimiento($id, $tprocedimiento['id_tipop']);
+								}
+								
+								}
+								}
+						$graph2->values = $values2;
+				$graph2->labels=$labels2;
+				$graph2->showValues = 2;
+$graph2->barWidth = 20;
+$graph2->barLength = 1.0;
+$graph2->labelSize = 12;
+$graph2->absValuesSize = 12;
+$graph2->percValuesSize = 12;
+$graph2->graphPadding = 10;
+$graph2->graphBGColor = "#ABCDEF";
+$graph2->graphBorder = "1px solid blue";
+$graph2->barColors = "#A0C0F0";
+$graph2->barBGColor = "#E0F0FF";
+$graph2->barBorder = "2px outset white";
+$graph2->labelColor = "#000000";
+$graph2->labelBGColor = "#C0E0FF";
+$graph2->labelBorder = "2px groove white";
+$graph2->absValuesColor = "#000000";
+$graph2->absValuesBGColor = "#FFFFFF";
+$graph2->absValuesBorder = "2px groove white";
+echo $graph2->create();
+					?>
 
 				
 				
